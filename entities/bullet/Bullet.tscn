@@ -53,11 +53,13 @@ collision_mask = 0
 shape = SubResource( 2 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( 0, -2.59569 )
 scale = Vector2( 0.5, 0.5 )
 color = Color( 0.98, 0.98, 0.98, 1 )
 polygon = PoolVector2Array( -4, -4, 4, -4, 4, 4, -4, 4 )
 
 [node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2( 0, -2.59569 )
 scale = Vector2( 0.5, 0.5 )
 color = Color( 0.73, 0.73, 0.73, 1 )
 invert_enable = true

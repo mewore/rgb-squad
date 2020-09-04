@@ -2,30 +2,30 @@ extends KinematicBody2D
 
 class_name Player
 
+onready var BULLET_CONTAINER: Node2D = Global.get_bullet_container()
+export(PackedScene) var BULLET_SCENE: PackedScene
+const BULLET_SPEED: float = 300.0
+var shooting_angle: float = 0
+var is_shooting: bool = false setget set_is_shooting
+onready var SHOOT_COOLDOWN_TIMER: Timer = $ShootCooldown
+
 onready var SPRITE: Sprite = $Sprite
 var COLOUR_MAP: Dictionary = {
     Types.RgbColour.RED: Color.indianred,
     Types.RgbColour.GREEN: Color.aquamarine,
     Types.RgbColour.BLUE: Color.indigo,
 }
-export(Types.RgbColour) var colour: int = Types.RgbColour.RED
+export(Types.RgbColour) var colour: int = Types.RgbColour.RED setget set_colour
 
 onready var HURTBOX: Area2D = $Hurtbox
 onready var INITIAL_PHYSICS_LAYER: int = HURTBOX.collision_layer
 
 func _ready() -> void:
     update_colour()
+    self.is_shooting = true
 
-func set_red() -> void:
-    colour = Types.RgbColour.RED
-    update_colour()
-
-func set_green() -> void:
-    colour = Types.RgbColour.GREEN
-    update_colour()
-
-func set_blue() -> void:
-    colour = Types.RgbColour.BLUE
+func set_colour(new_colour: int) -> void:
+    colour = new_colour
     update_colour()
 
 func update_colour() -> void:
@@ -34,3 +34,23 @@ func update_colour() -> void:
 
 func take_damage(damage: int) -> void:
     Global.player_hp -= damage
+
+func set_is_shooting(new_is_shooting: bool) -> void:
+    if new_is_shooting != is_shooting:
+        is_shooting = new_is_shooting
+        if is_shooting and SHOOT_COOLDOWN_TIMER.is_stopped():
+            shoot()
+            SHOOT_COOLDOWN_TIMER.start()
+
+func _on_ShootCooldown_timeout() -> void:
+    if is_shooting:
+        shoot()
+    else:
+        SHOOT_COOLDOWN_TIMER.stop()
+
+func shoot() -> void:
+    var bullet: Bullet = BULLET_SCENE.instance()
+    bullet.position = self.position
+    bullet.speed = Vector2.RIGHT.rotated(shooting_angle) * BULLET_SPEED
+    bullet.colour = colour
+    BULLET_CONTAINER.add_child(bullet)
