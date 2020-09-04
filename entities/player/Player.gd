@@ -28,3 +28,6 @@ func set_blue() -> void:
 
 func update_colour() -> void:
     SPRITE.self_modulate = COLOUR_MAP[colour]
+
+func take_damage(damage: int) -> void:
+    print("Taking %d damage... NOT." % damage)
