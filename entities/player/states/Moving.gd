@@ -12,3 +12,11 @@ func physics_process(delta: float) -> void:
     var target_speed: Vector2 = Vector2(input_x, input_y) * MAX_SPEED
     motion = motion.move_toward(target_speed, ACCELERATION * delta)
     motion = player.move_and_slide(motion)
+
+func unhandled_input(event: InputEvent) -> void:
+    if event.is_action_pressed("set_red"):
+        player.set_red()
+    elif event.is_action_pressed("set_green"):
+        player.set_green()
+    elif event.is_action_pressed("set_blue"):
+        player.set_blue()

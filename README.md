@@ -5,7 +5,7 @@
 ### MVP
 - [x] Simple environment - single room
 - [x] Player (square) that can move around with the arrow keys (see twenty/roguelike)
-- [ ] The player can change colour with ASD (RGB)
+- [x] The player can change colour with ASD (RGB)
 - [ ] Stationary turrets (squares) that shoot non-functional bullets at the player (see crypt-guardians)
 - [ ] The turrets have a colour, as well as their bullets
 - [ ] The bullets pass through the player if they have the same colour and collide otherwise (maybe there should be 6 collision layers - 3 for the player, 3 for the enemies)
