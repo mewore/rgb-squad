@@ -3,7 +3,7 @@
 ## TODO
 
 ### MVP
-- [ ] Simple environment - single room
+- [x] Simple environment - single room
 - [ ] Player (square) that can move around with the arrow keys (see twenty/roguelike)
 - [ ] The player can change colour with ASD (RGB)
 - [ ] Stationary turrets (squares) that shoot non-functional bullets at the player (see crypt-guardians)
