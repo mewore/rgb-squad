@@ -7,4 +7,4 @@ modulate = Color( 0.861953, 1, 0.43, 1 )
 collides_with_walls = true
 
 [node name="Attack" parent="." index="1"]
-collision_mask = 4
+collision_mask = 32
