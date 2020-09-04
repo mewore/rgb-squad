@@ -9,7 +9,7 @@
 - [x] Stationary turrets (squares) that shoot non-functional bullets at the player (see crypt-guardians)
 - [x] The turrets have a colour, as well as their bullets
 - [x] The bullets pass through the player if they have the same colour and collide otherwise (maybe there should be 6 collision layers - 3 for the player, 3 for the enemies)
-- [ ] :skull: `[LOSE STATE]` When hit, the player loses hp; when at 0hp, the player loses
+- [x] :skull: `[LOSE STATE]` When hit, the player loses hp; when at 0hp, the player loses
 - [ ] The player can shoot too
 - [ ] Endless automatically generated rooms (see twenty/roguelike)
 - [ ] Score = rooms cleared

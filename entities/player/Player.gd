@@ -33,4 +33,4 @@ func update_colour() -> void:
     HURTBOX.collision_layer = INITIAL_PHYSICS_LAYER << colour
 
 func take_damage(damage: int) -> void:
-    print("Taking %d damage... NOT." % damage)
+    Global.player_hp -= damage

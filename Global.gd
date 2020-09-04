@@ -8,9 +8,9 @@ const FIRST_LEVEL: int = 1
 var current_level: int = 0
 var game_won: bool = false
 
-onready var GAME_BEGIN_SCENE = "res://ui/Game.tscn"
-onready var GAME_LOST_SCENE = "res://ui/Game.tscn"
-onready var GAME_WON_SCENE = "res://ui/Game.tscn"
+onready var GAME_BEGIN_SCENE = "res://Game.tscn"
+onready var GAME_LOST_SCENE = "res://Game.tscn"
+onready var GAME_WON_SCENE = "res://Game.tscn"
 
 # Player properties
 const MAX_PLAYER_HP: int = 5
@@ -21,6 +21,8 @@ func set_player_hp(new_player_hp: int) -> void:
     player_hp = new_player_hp
     if new_player_hp < old_player_hp:
         emit_signal("player_damaged", old_player_hp, new_player_hp)
+    if new_player_hp <= 0:
+        lose_game()
 
 func _ready():
     LOG.info("Global :: ready")
