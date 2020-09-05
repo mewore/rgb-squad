@@ -12,7 +12,7 @@
 [node name="Player" parent="." groups=[
 "player",
 ] instance=ExtResource( 2 )]
-position = Vector2( 256, 40 )
+position = Vector2( 160, 64 )
 
 [node name="BulletContainer" type="Node2D" parent="." groups=[
 "bullet_container",
