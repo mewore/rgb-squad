@@ -158,7 +158,22 @@ class RealLog:
         
     func error(message: String, function_name: String = "") -> void:
         if error_logging:
+            _log(LEVEL_ERROR, message, function_name)    
+
+    func check_error_code(
+            error_code: int,
+            action_description: String = "",
+            function_name: String = "") -> void:
+        if error_logging and error_code != OK:
+            var action_description_phase: String = \
+                "the following action: %s" % action_description if action_description \
+                else "an unknown action"
+            var message: String = \
+                "Encountered ERROR [%d] while performing the %s" % \
+                [error_code, action_description_phase]
+            
             _log(LEVEL_ERROR, message, function_name)
+        assert(error_code == OK)
     
     func _log(level: String, message: String, function_name: String = "") -> void:
         if not function_name:
@@ -215,6 +230,12 @@ class RealLog:
 # An efficient way to disable functionality without affecting performance or having to make code changes.
 class DummyLog:
     extends Log
+
+    func check_error_code(
+            error_code: int,
+            _message: String = "",
+            _function_name: String = "") -> void:
+        assert(error_code == OK)
 
 ############################
 ######## FileWriter ########

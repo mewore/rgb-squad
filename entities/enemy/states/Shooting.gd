@@ -14,7 +14,7 @@ func exit() -> void:
     RELOAD.stop()
 
 func _on_Cooldown_timeout():
-    enemy.shoot_at_player(150.0)
+    enemy.shoot_at_player()
 
 func _on_Duration_timeout():
     COOLDOWN.stop()

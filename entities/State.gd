@@ -18,7 +18,7 @@ var next_state: String
 func set_next_state(new_next_state: String) -> void:
     if self.active:
         if self.next_state and self.next_state != new_next_state:
-            print("The next state is already set to '%s'. Overwriting it with '%s'." %
+            LOG.warn("The next state is already set to '%s'. Overwriting it with '%s'." %
                 [self.next_state, new_next_state])
         self.next_state = new_next_state
         self.emit_signal("next_state_requested", self, new_next_state)

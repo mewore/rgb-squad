@@ -4,7 +4,7 @@ class_name Player
 
 onready var BULLET_CONTAINER: Node2D = Global.get_bullet_container()
 export(PackedScene) var BULLET_SCENE: PackedScene
-const BULLET_SPEED: float = 300.0
+const BULLET_SPEED: float = 500.0
 var shooting_angle: float = 0
 var is_shooting: bool = false setget set_is_shooting
 onready var SHOOT_COOLDOWN_TIMER: Timer = $ShootCooldown

@@ -25,13 +25,13 @@ FIRST_STATE = NodePath("Shooting")
 script = ExtResource( 4 )
 
 [node name="Cooldown" type="Timer" parent="StateMachine/Shooting"]
-wait_time = 0.1
+wait_time = 0.2
 
 [node name="Duration" type="Timer" parent="StateMachine/Shooting"]
+wait_time = 1.5
 one_shot = true
 
 [node name="Reload" type="Timer" parent="StateMachine/Shooting"]
-wait_time = 0.5
 one_shot = true
 
 [node name="Hurtbox" type="Area2D" parent="."]

@@ -19,6 +19,8 @@ export(int) var damage: int = 1
 
 export(Vector2) var speed: Vector2 = Vector2.ZERO
 
+const WALL_COLLISION_LAYER: int = 0
+
 export(Types.RgbColour) var colour: int = Types.RgbColour.RED
 var COLOUR_MAP: Dictionary = {
     Types.RgbColour.RED: Color.indianred,
@@ -28,7 +30,7 @@ var COLOUR_MAP: Dictionary = {
 
 func _ready() -> void:
     if collides_with_walls:
-        self.set_collision_mask_bit(0, true)
+        self.set_collision_mask_bit(WALL_COLLISION_LAYER, true)
     
     modulate = COLOUR_MAP[colour]
     
@@ -56,3 +58,8 @@ func _on_Attack_area_entered(other_area: Area2D):
     if other_area.owner.has_method("take_damage"):
         other_area.owner.take_damage(damage)
         queue_free()
+
+func disappear() -> void:
+    # It would suck if the bullet hit something while disappearing
+    ATTACK_AREA.collision_mask = 0
+    ANIMATION_PLAYER.play("disappear")

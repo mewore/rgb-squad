@@ -20,3 +20,9 @@ func warn(_message: String, _function_name: String = "") -> void:
 
 func error(_message: String, _function_name: String = "") -> void:
     pass
+
+func check_error_code(
+        _error_code: int,
+        _action_description: String = "",
+        _function_name: String = "") -> void:
+    pass
