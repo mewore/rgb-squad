@@ -25,6 +25,8 @@ func _ready() -> void:
     
     var center_position: Vector2 = Global.get_room_center().position
     var distance_from_center: float = center_position.distance_to(position)
+    if not is_zero_approx(Global.room_enter_direction.length_squared()):
+        shooting_angle = Global.room_enter_direction.angle()
     position = center_position + \
         Global.room_enter_direction * -distance_from_center
 

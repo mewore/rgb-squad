@@ -22,7 +22,7 @@ func _ready() -> void:
     var wall_tile_id: int = COMMON_MAP.tile_set.find_tile_by_name("wall")
     for _tile in DOOR_TILES:
         var tile: Vector2 = _tile
-        COMMON_MAP.set_cell(tile.x, tile.y, wall_tile_id)
+        COMMON_MAP.set_cell(int(tile.x), int(tile.y), wall_tile_id)
 
     if Global.room_is_cleared:
         open_doors()
@@ -33,6 +33,7 @@ func _ready() -> void:
             var enemy: Enemy = _enemy
             LOG.check_error_code(enemy.connect("dead", self, "_on_enemy_dead"),
                 "Connecting an enemy's 'dead' signal to the room's '_on_enemy_dead' method")
+        Global.do_room_countdown()
     else:
         open_doors()
 
@@ -70,6 +71,6 @@ func open_doors() -> void:
         var delta_y: int = int(sign(distance_from_center.y)) if not is_horizontal else 0
         
         if Global.dungeon_layout.current_room.has_door(delta_x, delta_y):
-            COMMON_MAP.set_cell(cell.x, cell.y, -1)
+            COMMON_MAP.set_cell(int(cell.x), int(cell.y), -1)
     is_open = true
     Global.dungeon_layout.current_room.cleared = true

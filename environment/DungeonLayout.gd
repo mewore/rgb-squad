@@ -38,7 +38,7 @@ func _init(init_width: int, init_height: int, additional_doors: float) -> void:
         var door: Array = skipped_doors[i]
         var first_room: RoomNode = room_matrix[door[0][0]][door[0][1]]
         var second_room: RoomNode = room_matrix[door[1][0]][door[1][1]]
-        first_room.connect_to(second_room, true)
+        first_room.make_door_to(second_room)
         
     current_room = room_matrix[0][0]
 

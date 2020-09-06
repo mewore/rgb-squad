@@ -27,6 +27,8 @@ const DUNGEON_HEIGHT: int = 3
 const DUNGEON_ADDITIONAL_DOORS: float = 0.0
 var dungeon_layout: DungeonLayout
 
+const ROOM_COUNTDOWN_TIME: float = 3.0
+
 func _init() -> void:
     reset()
 
@@ -100,6 +102,11 @@ func _input(event: InputEvent):
     if event.is_action_pressed("pause"):
         LOG.info("Pause pressed")
         get_tree().paused = not get_tree().paused
+
+func do_room_countdown() -> void:
+    get_tree().paused = true
+    yield(get_tree().create_timer(ROOM_COUNTDOWN_TIME), "timeout")
+    get_tree().paused = false
 
 func get_map() -> TileMap:
     var nodes: Array = get_tree().get_nodes_in_group("map")

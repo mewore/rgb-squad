@@ -22,23 +22,25 @@ func get_root() -> RoomNode:
         result = result.parent
     return result
 
-func connect_to(other_room: RoomNode, force: bool = false) -> bool:
+func connect_to(other_room: RoomNode) -> bool:
     var self_root: RoomNode = self.get_root()
     var other_root: RoomNode = other_room.get_root()
-    if self_root != other_root:
-        if self_root.tree_size < other_root.tree_size:
-            self_root.parent = other_root
-        else:
-            other_root.parent = self_root
-            if other_root.tree_size == self_root.tree_size:
-                self_root.tree_size += 1
-    elif not force:
+    if self_root == other_root:
         return false
     
+    if self_root.tree_size < other_root.tree_size:
+        self_root.parent = other_root
+    else:
+        other_root.parent = self_root
+        if other_root.tree_size == self_root.tree_size:
+            self_root.tree_size += 1
+    
+    make_door_to(other_room)
+    return true
+
+func make_door_to(other_room: RoomNode) -> void:
     add_door(other_room)
     other_room.add_door(self)
-    
-    return true
 
 func has_door(delta_x: int, delta_y: int) -> bool:
     return doors[delta_to_direction(delta_x, delta_y)]

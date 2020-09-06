@@ -14,8 +14,8 @@ var current_room_display: Node2D
 func _ready():
     assert(WIDTH % 2 == 1)
     assert(HEIGHT % 2 == 1)
-    var center_x = WIDTH / 2
-    var center_y = WIDTH / 2
+    var center_x: int = int(WIDTH / 2.0)
+    var center_y: int = int(WIDTH / 2.0)
     for x in range(WIDTH):
         for y in range(HEIGHT):
             var dx: int = x - center_x
