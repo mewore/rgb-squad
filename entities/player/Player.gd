@@ -37,6 +37,8 @@ var colour: int = Global.player_colour setget set_colour
 onready var HURTBOX: Area2D = $Hurtbox
 onready var INITIAL_PHYSICS_LAYER: int = HURTBOX.collision_layer
 
+var is_active: bool = false
+
 func _ready() -> void:
     update_colour()
     

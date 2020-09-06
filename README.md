@@ -46,6 +46,7 @@
 - [x] Main menu
 - [x] Add a font ([JELLEE TYPEFACE](https://fontlibrary.org/en/font/jellee-typeface))
 - [x] Pause menu
+- [x] Fade in/out when moving between rooms
 
 ### Additional features
 - [ ] Smoother transition of player colours

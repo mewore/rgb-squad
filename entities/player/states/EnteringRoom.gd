@@ -7,6 +7,7 @@ var target_position: Vector2
 onready var MOVING_TIMER: Timer = $MovingTime
 
 func enter() -> void:
+    player.is_active = false
     player.moving = true
     var entering_vector: Vector2 = Vector2.RIGHT.rotated(player.shooting_angle)
     target_position = player.position

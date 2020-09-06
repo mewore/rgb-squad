@@ -1,5 +1,9 @@
 extends Node2D
 
+class_name Room
+
+signal player_left(direction)
+
 var LOG: Log = LogManager.get_log(self)
 
 onready var ENEMY_CONTAINER: Node = $YSort/Enemies
@@ -9,7 +13,7 @@ onready var COMMON_MAP: TileMap = $CommonMap
 onready var DOOR_CELLS: PoolVector2Array = PoolVector2Array(
     COMMON_MAP.get_used_cells_by_id(COMMON_MAP.tile_set.find_tile_by_name("door")))
 
-onready var PLAYER: Node2D = $YSort/Player
+onready var PLAYER: Player = $YSort/Player
 onready var MIN_PLAYER_POS: Vector2 = to_global($PlayerMin.position)
 onready var MAX_PLAYER_POS: Vector2 = to_global($PlayerMax.position)
 
@@ -77,16 +81,16 @@ func _ready() -> void:
         Global.clear_room()
 
 func _process(_delta: float) -> void:
-    if is_open:
+    if is_open and PLAYER.is_active:
         var player_pos: Vector2 = PLAYER.to_global(Vector2.ZERO)
         if player_pos.x < MIN_PLAYER_POS.x:
-            Global.go_to_room(Vector2.LEFT)
+            emit_signal("player_left", Vector2.LEFT)
         elif player_pos.y < MIN_PLAYER_POS.y:
-            Global.go_to_room(Vector2.UP)
+            emit_signal("player_left", Vector2.UP)
         elif player_pos.x > MAX_PLAYER_POS.x:
-            Global.go_to_room(Vector2.RIGHT)
+            emit_signal("player_left", Vector2.RIGHT)
         elif player_pos.y > MAX_PLAYER_POS.y:
-            Global.go_to_room(Vector2.DOWN)
+            emit_signal("player_left", Vector2.DOWN)
 
 func _on_enemy_dead() -> void:
     enemies_left -= 1

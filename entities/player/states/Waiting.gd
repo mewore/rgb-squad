@@ -7,6 +7,7 @@ var target_position: Vector2
 onready var IDLE_TIMER: Timer = $IdleTime
 
 func enter() -> void:
+    player.is_active = false
     player.moving = false
     IDLE_TIMER.start()
     yield(IDLE_TIMER, "timeout")
