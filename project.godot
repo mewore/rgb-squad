@@ -187,6 +187,9 @@ ui_start={
 2d_physics/layer_6="Enemy (red)"
 2d_physics/layer_7="Enemy (green)"
 2d_physics/layer_8="Enemy (blue)"
+2d_physics/layer_9="Bullet (red)"
+2d_physics/layer_10="Bullet (green)"
+2d_physics/layer_11="Bullet (blue)"
 
 [rendering]
 

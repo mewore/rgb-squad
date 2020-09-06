@@ -38,8 +38,8 @@
 - [ ] 3 player characters with different attacks (R = shotgun/fire, G = laser, B = melee)
   - [ ] :fire: Red - fire
     - Effect: big and homing
-  - [ ] :bug: Green - poison
-    - Effect: double damage
+  - [x] :bug: Green - poison?
+    - Effect: destroys enemy bullets
   - [ ] :droplet: Blue - ice
     - Effect: Freezes the enemy for a short amount of time (e.g. 0.1s)
 - [x] The 3 player characters have their own health bars

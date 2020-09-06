@@ -12,10 +12,14 @@ onready var MAX_X: float = WINDOW_WIDTH + BORDER_DESTROY_PADDING
 onready var MAX_Y: float = WINDOW_HEIGHT + BORDER_DESTROY_PADDING
 
 onready var ATTACK_AREA: Area2D = $Attack
+onready var HURTBOX: Area2D = $Hurtbox
 
 export(bool) var collides_with_walls: bool = false
+export(bool) var collides_with_other_bullets: bool = false
 
 export(int) var damage: int = 1
+export(int) var bullet_pierce: int = 2
+export(int) var entity_pierce: int = 1
 
 export(Vector2) var speed: Vector2 = Vector2.ZERO
 
@@ -36,12 +40,23 @@ func _ready() -> void:
     modulate = COLOUR_MAP[colour]
     modulate.a = opacity
     
+    var red_bullet_collision_mask: int = HURTBOX.collision_layer
+    var full_bullet_collision_mask: int = red_bullet_collision_mask \
+        | (red_bullet_collision_mask << 1) \
+        | (red_bullet_collision_mask << 2)
+    HURTBOX.collision_layer <<= colour
+    
     # Collide with every colour...
-    var full_collision_mask: int = ATTACK_AREA.collision_mask \
-        | (ATTACK_AREA.collision_mask << 1) \
-        | (ATTACK_AREA.collision_mask << 2)
+    var red_entity_collision_mask: int = ATTACK_AREA.collision_mask
+    var full_collision_mask: int = red_entity_collision_mask \
+        | (red_entity_collision_mask << 1) \
+        | (red_entity_collision_mask << 2)
     # ...except its own
-    ATTACK_AREA.collision_mask = full_collision_mask ^ (ATTACK_AREA.collision_mask << colour)
+    ATTACK_AREA.collision_mask = full_collision_mask ^ (red_entity_collision_mask << colour)
+    if collides_with_other_bullets:
+        ATTACK_AREA.collision_mask ^= \
+            full_bullet_collision_mask ^ (red_bullet_collision_mask << colour)
+    
 
 func _physics_process(delta: float):
     var out_of_world: bool = position.x < MIN_X or position.x > MAX_X \
@@ -59,7 +74,17 @@ func _physics_process(delta: float):
 func _on_Attack_area_entered(other_area: Area2D):
     if other_area.owner.has_method("take_damage"):
         other_area.owner.take_damage(damage)
-        queue_free()
+        if other_area.owner.is_in_group("bullets"):
+            bullet_pierce -= 1
+            if bullet_pierce <= 0:
+                queue_free()
+        else:
+            entity_pierce -= 1
+            if entity_pierce <= 0:
+                queue_free()
+
+func take_damage(_damage: int) -> void:
+    queue_free()
 
 func disappear() -> void:
     # It would suck if the bullet hit something while disappearing

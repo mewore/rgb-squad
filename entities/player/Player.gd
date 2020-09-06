@@ -119,4 +119,8 @@ func shoot() -> void:
     bullet.speed = Vector2.RIGHT.rotated(shooting_angle) * BULLET_SPEED
     bullet.colour = colour
     bullet.modulate.a = BULLET_OPACITY
+    
+    if colour == Types.RgbColour.GREEN:
+        bullet.collides_with_other_bullets = true
+    
     BULLET_CONTAINER.add_child(bullet)
