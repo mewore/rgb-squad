@@ -5,8 +5,8 @@ export(PackedScene) var MINIMAP_ROOM_SCENE: PackedScene
 export(int) var WIDTH: int = 3
 export(int) var HEIGHT: int = 3
 
-export(Vector2) var ROOM_PADDING = Vector2.ONE * 4
-export(Vector2) var ROOM_MARGIN = Vector2.ONE * 4
+export(Vector2) var ROOM_PADDING = Vector2.ONE * 8
+export(Vector2) var ROOM_MARGIN = Vector2.ONE * 8
 export(Vector2) var ROOM_SIZE = Vector2.ONE * 16
 
 var current_room_display: Node2D

@@ -32,7 +32,9 @@ func _ready() -> void:
     if collides_with_walls:
         self.set_collision_mask_bit(WALL_COLLISION_LAYER, true)
     
+    var opacity: float = modulate.a
     modulate = COLOUR_MAP[colour]
+    modulate.a = opacity
     
     # Collide with every colour...
     var full_collision_mask: int = ATTACK_AREA.collision_mask \

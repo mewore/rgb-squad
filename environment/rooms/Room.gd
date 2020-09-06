@@ -67,6 +67,7 @@ func _ready() -> void:
             var enemy: Enemy = _enemy
             LOG.check_error_code(enemy.connect("dead", self, "_on_enemy_dead"),
                 "Connecting an enemy's 'dead' signal to the room's '_on_enemy_dead' method")
+        
         for _door in PRESENT_DOORS:
             var door: Node2D = _door
             door.visible = false

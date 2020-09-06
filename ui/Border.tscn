@@ -45,4 +45,4 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 50, 1024 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Inner"]
-polygon = PoolVector2Array( 640, 0, 1024, 0, 1024, 600, 640, 600 )
+polygon = PoolVector2Array( 640, 0, 1088, 0, 1088, 608, 640, 600 )

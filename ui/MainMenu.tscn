@@ -1,0 +1,137 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ui/default-theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/fonts/jelee-big.tres" type="DynamicFont" id=2]
+[ext_resource path="res://ui/MainMenu.gd" type="Script" id=3]
+[ext_resource path="res://ui/PreviouslyCleared.gd" type="Script" id=4]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.054902, 0.0117647, 0.172549, 1, 0.25098, 0.164706, 0.0431373, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 600
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gradient" type="Sprite" parent="."]
+position = Vector2( 1024, 0 )
+rotation = 1.5708
+texture = SubResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 600, 1024 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+rect_min_size = Vector2( 1024, 600 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Control" parent="HBoxContainer"]
+margin_right = 211.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 215.0
+margin_right = 809.0
+margin_bottom = 600.0
+
+[node name="Spacer" type="Control" parent="HBoxContainer/VBoxContainer"]
+margin_right = 594.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+margin_top = 154.0
+margin_right = 594.0
+margin_bottom = 242.0
+
+[node name="R" type="Label" parent="HBoxContainer/VBoxContainer/Title"]
+margin_right = 50.0
+margin_bottom = 88.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.866667, 0.333333, 0.333333, 1 )
+custom_colors/font_color_shadow = Color( 0.929412, 1, 0.0784314, 1 )
+text = "R"
+
+[node name="G" type="Label" parent="HBoxContainer/VBoxContainer/Title"]
+margin_left = 54.0
+margin_right = 109.0
+margin_bottom = 88.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.333333, 0.866667, 0.505882, 1 )
+custom_colors/font_color_shadow = Color( 0.929412, 1, 0.0784314, 1 )
+text = "G"
+
+[node name="Bunny" type="Label" parent="HBoxContainer/VBoxContainer/Title"]
+margin_left = 113.0
+margin_right = 341.0
+margin_bottom = 88.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.333333, 0.517647, 0.866667, 1 )
+custom_colors/font_color_shadow = Color( 0.929412, 1, 0.0784314, 1 )
+text = "Bunny"
+
+[node name="Squad" type="Label" parent="HBoxContainer/VBoxContainer/Title"]
+margin_left = 345.0
+margin_right = 594.0
+margin_bottom = 88.0
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.509804, 0.517647, 0.533333, 1 )
+custom_colors/font_color_shadow = Color( 0.929412, 1, 0.0784314, 1 )
+text = " Squad"
+
+[node name="Spacer2" type="Control" parent="HBoxContainer/VBoxContainer"]
+margin_top = 246.0
+margin_right = 594.0
+margin_bottom = 396.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PreviouslyCleared" type="Label" parent="HBoxContainer/VBoxContainer"]
+margin_top = 400.0
+margin_right = 594.0
+margin_bottom = 420.0
+theme = ExtResource( 1 )
+text = "Cleared: 34/100 rooms"
+align = 1
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartInstruction" type="Label" parent="HBoxContainer/VBoxContainer"]
+margin_top = 424.0
+margin_right = 594.0
+margin_bottom = 444.0
+theme = ExtResource( 1 )
+text = "Press X to start"
+align = 1
+
+[node name="Spacer3" type="Control" parent="HBoxContainer/VBoxContainer"]
+margin_top = 448.0
+margin_right = 594.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Spacer2" type="Control" parent="HBoxContainer"]
+margin_left = 813.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

@@ -35,19 +35,29 @@
 - [x] Score display
 - [ ] Enemies may drop HP
 - [x] When hurt: game freeze (momentary) followed by a camera shake
-- [ ] Enemies with melee attacks
-- [ ] 3 player characters (R = shotgun/fire, G = laser, B = melee)
+- [ ] 3 player characters with different attacks (R = shotgun/fire, G = laser, B = melee)
+  - [ ] :fire: Red - fire
+    - Effect: big and homing
+  - [ ] :bug: Green - poison
+    - Effect: double damage
+  - [ ] :droplet: Blue - ice
+    - Effect: Freezes the enemy for a short amount of time (e.g. 0.1s)
 - [x] The 3 player characters have their own health bars
-- [ ] Random upgrades, specific to every player kind
-- [ ] More enemy types with harder to dodge attacks
 - [ ] Main menu
 - [ ] Add a font ([JELLEE TYPEFACE](https://fontlibrary.org/en/font/jellee-typeface))
+- [ ] Pause menu
 
 ### Additional features
-- [ ] :checkered_flag: `[WIN STATE]` A non-endless mode where the player must collect 3 keys
-- [ ] Every key is guarded by a boss
-- [ ] Checkpoints (for the non-endless mode)
+- [ ] Smoother transition of player colours
+- [ ] Player shadow
+- [ ] Enemy visual effect when hit (e.g. flashing white)
+- [ ] More enemy types with harder to dodge attacks
+- [ ] Random upgrades, specific to every player kind
 - [x] Replace the obstacles in the middle of the room with holes
 
 ### Potential features
+- [ ] Enemies with melee attacks
+- [ ] Every key is guarded by a boss
+- [ ] Checkpoints (for the non-endless mode)
+- [ ] :checkered_flag: `[WIN STATE]` A non-endless mode where the player must collect 3 keys
 - [ ] Predefined dialogue between the player and the bosses

@@ -5,6 +5,8 @@ class_name Player
 onready var BULLET_CONTAINER: Node2D = Global.get_bullet_container()
 export(PackedScene) var BULLET_SCENE: PackedScene
 const BULLET_SPEED: float = 1000.0
+const BULLET_SIZE: float = 4.0
+const BULLET_OPACITY: float = 0.5
 var facing_direction: int = Types.Direction.DOWN setget set_facing_direction
 var moving: bool = false setget set_moving
 var shooting_angle: float = 0
@@ -113,6 +115,8 @@ func _on_ShootCooldown_timeout() -> void:
 func shoot() -> void:
     var bullet: Bullet = BULLET_SCENE.instance()
     bullet.position = self.position
+    bullet.scale = Vector2.ONE * BULLET_SIZE
     bullet.speed = Vector2.RIGHT.rotated(shooting_angle) * BULLET_SPEED
     bullet.colour = colour
+    bullet.modulate.a = BULLET_OPACITY
     BULLET_CONTAINER.add_child(bullet)

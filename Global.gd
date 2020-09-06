@@ -10,8 +10,8 @@ var current_level: int = 0
 var game_won: bool = false
 
 onready var GAME_BEGIN_SCENE = "res://Game.tscn"
-onready var GAME_LOST_SCENE = "res://Game.tscn"
-onready var GAME_WON_SCENE = "res://Game.tscn"
+onready var GAME_LOST_SCENE = "res://ui/MainMenu.tscn"
+onready var GAME_WON_SCENE = "res://ui/MainMenu.tscn"
 onready var GAME_SCENE = "res://Game.tscn"
 
 # Player properties
@@ -81,6 +81,8 @@ func clear_room() -> void:
     dungeon_layout.current_room.cleared = true
     cleared_rooms += 1
     emit_signal("room_cleared", cleared_rooms, DUNGEON_SIZE)
+    if cleared_rooms >= DUNGEON_SIZE:
+        win_game()
 
 func is_room_cleared() -> bool:
     return dungeon_layout.current_room.cleared
@@ -111,7 +113,6 @@ func go_to_first_level() -> void:
 
 func win_game() -> void:
     LOG.info("[win state]")
-    reset()
     change_scene(GAME_WON_SCENE)
 
 func clear_level() -> void:
@@ -133,7 +134,6 @@ func get_level_path(level: int) -> String:
 
 func lose_game() -> void:
     LOG.info("[lose state]")
-    reset()
     change_scene(GAME_LOST_SCENE)
 
 func reset() -> void:

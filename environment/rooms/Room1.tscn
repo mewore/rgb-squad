@@ -9,16 +9,16 @@
 tile_data = PoolIntArray( 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 196614, 2, 0, 262147, 2, 1, 262150, 2, 1, 327683, 2, 1, 327686, 2, 1, 393219, 2, 1, 393220, 2, 0, 393221, 2, 0, 393222, 2, 1 )
 
 [node name="Shooter" parent="Enemies" index="0" instance=ExtResource( 2 )]
-position = Vector2( 512, 128 )
+position = Vector2( 512, 168 )
 
 [node name="Shooter2" parent="Enemies" index="1" instance=ExtResource( 2 )]
-position = Vector2( 512, 512 )
+position = Vector2( 512, 480 )
 
 [node name="Shooter3" parent="Enemies" index="2" instance=ExtResource( 2 )]
-position = Vector2( 128, 128 )
+position = Vector2( 128, 168 )
 
 [node name="Shooter4" parent="Enemies" index="3" instance=ExtResource( 2 )]
-position = Vector2( 128, 512 )
+position = Vector2( 128, 480 )
 
 [node name="Shooter5" parent="Enemies" index="4" instance=ExtResource( 2 )]
 position = Vector2( 320, 320 )
