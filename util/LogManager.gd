@@ -249,8 +249,7 @@ class IFileWriter:
 
 class FileWriter:
     extends IFileWriter
-    
-#    const DATE_TIME_FORMAT: String = "{year}-{month}-{day}"
+
     const DATE_TIME_FORMAT: String = "{year}-{month}-{day}-{hour}-{minute}-{second}"
     const DATE_TIME_PADDING: int = 2
     
@@ -260,17 +259,17 @@ class FileWriter:
     func _init(file_path: String, file_name: String) -> void:
         self.full_file_path = file_path  + _get_game_start_time() + "-" + file_name + ".log"
         self.file = File.new()
-        
-        _create_file_if_not_exist()
     
     func _create_file_if_not_exist() -> void:
         if not file.file_exists(full_file_path):
             var error: int = file.open(full_file_path, File.WRITE)
             if error != OK:
-                printerr("Error [%d] when opening file %s" % [error, full_file_path])
+                printerr("Error [%d] when creating file %s" % [error, full_file_path])
             file.close()
     
     func write(log_line: String) -> void:
+        _create_file_if_not_exist()
+
         var error: int = self.file.open(full_file_path, File.READ_WRITE)
         if error != OK:
             printerr("Error [%d] when opening file %s" % [error, full_file_path])

@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 class_name Player
 
-onready var WINDOW_HEIGHT: float = ProjectSettings.get_setting("display/window/size/height")
 onready var BULLET_CONTAINER: Node2D = Global.get_bullet_container()
 export(PackedScene) var BULLET_SCENE: PackedScene
 const BULLET_SPEED: float = 500.0

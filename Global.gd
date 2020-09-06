@@ -18,19 +18,21 @@ const MAX_PLAYER_HP: int = 5
 var player_hp: int = MAX_PLAYER_HP setget set_player_hp
 
 var cleared_rooms: Dictionary = {}
-var current_room_x: int = 0
-var current_room_y: int = 0
 var room_is_cleared: bool = false
 var room_enter_direction: Vector2 = Vector2.UP
 
-func _encode_room(room_x: int, room_y: int) -> int:
-    return (room_x << 30) + room_y
+const DUNGEON_WIDTH: int = 3
+const DUNGEON_HEIGHT: int = 3
+const DUNGEON_ADDITIONAL_DOORS: float = 0.0
+var dungeon_layout: DungeonLayout
+
+func _init() -> void:
+    reset()
 
 func go_to_room(direction: Vector2) -> void:
-    cleared_rooms[_encode_room(current_room_x, current_room_y)] = true
-    current_room_x += int(direction.x)
-    current_room_y += int(direction.y)
-    room_is_cleared = cleared_rooms.has(_encode_room(current_room_x, current_room_y))
+    dungeon_layout.current_room.cleared = true
+    dungeon_layout.move(int(direction.x), int(direction.y))
+    room_is_cleared = dungeon_layout.current_room.cleared
     room_enter_direction = direction
     change_scene(GAME_SCENE)
 
@@ -83,8 +85,8 @@ func lose_game() -> void:
 func reset() -> void:
     player_hp = MAX_PLAYER_HP
     cleared_rooms = {}
-    current_room_x = 0
-    current_room_y = 0
+    dungeon_layout = DungeonLayout.new(
+        DUNGEON_WIDTH, DUNGEON_HEIGHT, DUNGEON_ADDITIONAL_DOORS)
     room_is_cleared = false
 
 func change_scene(new_scene: String) -> void:
