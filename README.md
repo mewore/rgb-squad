@@ -30,7 +30,7 @@
 - [x] Player sprite
 - [x] Different player sprites for the different colours
 - [x] Enemy sprites
-- [ ] Terrain (walls, doors, floor, etc.)
+- [x] Terrain (walls, doors, floor, etc.)
 - [ ] HP display
 - [x] Score display
 - [ ] Enemies may drop HP
@@ -47,7 +47,7 @@
 - [ ] :checkered_flag: `[WIN STATE]` A non-endless mode where the player must collect 3 keys
 - [ ] Every key is guarded by a boss
 - [ ] Checkpoints (for the non-endless mode)
-- [ ] Replace the obstacles in the middle of the room with holes
+- [x] Replace the obstacles in the middle of the room with holes
 
 ### Potential features
 - [ ] Predefined dialogue between the player and the bosses

@@ -184,7 +184,7 @@ scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 7 )
 vframes = 6
 hframes = 2
-frame = 10
+frame = 11
 
 [node name="Hurtbox" type="Area2D" parent="."]
 monitoring = false
