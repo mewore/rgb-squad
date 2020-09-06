@@ -1,12 +1,14 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://entities/player/Player.gd" type="Script" id=1]
-[ext_resource path="res://entities/player/JellyBun.png" type="Texture" id=2]
+[ext_resource path="res://entities/player/NukaBun.png" type="Texture" id=2]
 [ext_resource path="res://entities/StateMachine.gd" type="Script" id=3]
 [ext_resource path="res://entities/player/states/Moving.gd" type="Script" id=4]
 [ext_resource path="res://entities/bullet/PlayerBullet.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/player/FireBun.png" type="Texture" id=6]
 [ext_resource path="res://entities/player/IceBun.png" type="Texture" id=7]
+[ext_resource path="res://entities/player/states/EnteringRoom.gd" type="Script" id=8]
+[ext_resource path="res://entities/player/states/Waiting.gd" type="Script" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 13.1033
@@ -152,6 +154,18 @@ shape = SubResource( 2 )
 script = ExtResource( 3 )
 FIRST_STATE = NodePath("Moving")
 
+[node name="EnteringRoom" type="Node" parent="StateMachine"]
+script = ExtResource( 8 )
+
+[node name="MovingTime" type="Timer" parent="StateMachine/EnteringRoom"]
+wait_time = 2.5
+
+[node name="Waiting" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+
+[node name="IdleTime" type="Timer" parent="StateMachine/Waiting"]
+wait_time = 0.5
+
 [node name="Moving" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
 
@@ -170,7 +184,7 @@ scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 6 )
 vframes = 6
 hframes = 2
-frame = 6
+frame = 10
 
 [node name="ShootCooldown" type="Timer" parent="."]
 wait_time = 0.2

@@ -2,7 +2,8 @@ extends State
 
 class_name EnemyState
 
-const MOVING: String = "shooting"
+const SHOOTING: String = "shooting"
+const WAITING: String = "waiting"
 var enemy: Enemy
 
 func set_owner(owner: Node) -> void:

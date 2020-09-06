@@ -11,6 +11,8 @@ var shooting_angle: float = 0
 var is_shooting: bool = false setget set_is_shooting
 onready var SHOOT_COOLDOWN_TIMER: Timer = $ShootCooldown
 
+onready var STATE_MACHINE: StateMachine = $StateMachine
+
 onready var SPRITE: Sprite = $Sprite
 onready var INITIAL_SPRITE_X_SCALE: float = SPRITE.scale.x
 onready var ANIMATION_PLAYER: AnimationPlayer = $AnimationPlayer
@@ -38,8 +40,11 @@ func _ready() -> void:
     
     var center_position: Vector2 = Global.get_room_center().position
     var distance_from_center: float = center_position.distance_to(position)
-    if not is_zero_approx(Global.room_enter_direction.length_squared()):
+    var is_entering_room: bool = not is_zero_approx(Global.room_enter_direction.length_squared())
+    if is_entering_room:
         shooting_angle = Global.room_enter_direction.angle()
+        if not Global.is_room_cleared():
+            STATE_MACHINE.set_state("enteringroom")
     
     self.facing_direction = angle_to_direction(shooting_angle)
     position = center_position + \

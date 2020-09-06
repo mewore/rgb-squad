@@ -33,7 +33,6 @@ func _ready() -> void:
             var enemy: Enemy = _enemy
             LOG.check_error_code(enemy.connect("dead", self, "_on_enemy_dead"),
                 "Connecting an enemy's 'dead' signal to the room's '_on_enemy_dead' method")
-        Global.do_room_countdown()
     else:
         open_doors()
         Global.clear_room()
