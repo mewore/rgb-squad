@@ -86,7 +86,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="rgb-squad"
+config/name="RGBunny"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 

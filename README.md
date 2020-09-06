@@ -34,18 +34,20 @@
 - [ ] HP display
 - [x] Score display
 - [ ] Enemies may drop HP
-- [ ] When hurt: game freeze (momentary) followed by a camera shake
+- [x] When hurt: game freeze (momentary) followed by a camera shake
 - [ ] Enemies with melee attacks
 - [ ] 3 player characters (R = shotgun/fire, G = laser, B = melee)
 - [x] The 3 player characters have their own health bars
 - [ ] Random upgrades, specific to every player kind
 - [ ] More enemy types with harder to dodge attacks
 - [ ] Main menu
+- [ ] Add a font ([JELLEE TYPEFACE](https://fontlibrary.org/en/font/jellee-typeface))
 
 ### Additional features
 - [ ] :checkered_flag: `[WIN STATE]` A non-endless mode where the player must collect 3 keys
 - [ ] Every key is guarded by a boss
 - [ ] Checkpoints (for the non-endless mode)
+- [ ] Replace the obstacles in the middle of the room with holes
 
 ### Potential features
 - [ ] Predefined dialogue between the player and the bosses

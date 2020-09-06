@@ -1,6 +1,6 @@
 extends PlayerState
 
-const DISTANCE: float = 50.0
+const DISTANCE: float = 100.0
 var start_position: Vector2
 var target_position: Vector2
 
@@ -13,9 +13,10 @@ func enter() -> void:
     start_position = target_position - entering_vector * DISTANCE
     MOVING_TIMER.start()
     yield(MOVING_TIMER, "timeout")
-    set_next_state(PlayerState.WAITING)
+    if self.active:
+        set_next_state(PlayerState.WAITING)
 
-func process(delta: float) -> void:
+func process(_delta: float) -> void:
     var ratio = 1.0 - MOVING_TIMER.time_left / MOVING_TIMER.wait_time
     player.position = start_position.linear_interpolate(target_position, ratio)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://entities/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/NukaBun.png" type="Texture" id=2]
@@ -17,7 +17,16 @@ radius = 13.1033
 radius = 18.0
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 11.7436
+radius = 10.231
+
+[sub_resource type="CanvasItemMaterial" id=11]
+blend_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id=10]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=12]
+blend_mode = 2
 
 [sub_resource type="Animation" id=4]
 resource_name = "back_idle"
@@ -169,22 +178,41 @@ wait_time = 0.5
 [node name="Moving" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
 
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -6 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 7 )
+vframes = 6
+hframes = 2
+frame = 10
+
 [node name="Hurtbox" type="Area2D" parent="."]
 monitoring = false
 collision_layer = 2
 collision_mask = 2147483648
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2( 0, 0.340586 )
+position = Vector2( 0, 4.54982 )
 shape = SubResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -6 )
-scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 6 )
-vframes = 6
-hframes = 2
-frame = 10
+[node name="HurtboxPolygon" type="Polygon2D" parent="Hurtbox/CollisionShape2D"]
+visible = false
+material = SubResource( 11 )
+scale = Vector2( 1.01677, 1.01677 )
+color = Color( 0.0901961, 0.156863, 0.392157, 1 )
+polygon = PoolVector2Array( 0, 10, 7, 7, 10, 3, 10, -1, 8.7991, -5.47321, 4.79458, -8.39317, -0.0442123, -10.1451, -5.44218, -8.69476, -8.47039, -5.38978, -10.3058, -0.133847, -8.97095, 4.62152, -5.80071, 8.12547 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Hurtbox/CollisionShape2D/HurtboxPolygon"]
+material = SubResource( 10 )
+scale = Vector2( 0.894634, 0.894634 )
+color = Color( 1, 0.447059, 0, 1 )
+polygon = PoolVector2Array( 0, 10, 7, 7, 10, 3, 10, -1, 8.7991, -5.47321, 4.79458, -8.39317, -0.0442123, -10.1451, -5.44218, -8.69476, -8.47039, -5.38978, -10.3058, -0.133847, -8.97095, 4.62152, -5.80071, 8.12547 )
+
+[node name="Polygon2D3" type="Polygon2D" parent="Hurtbox/CollisionShape2D/HurtboxPolygon"]
+material = SubResource( 12 )
+scale = Vector2( 0.763504, 0.763504 )
+color = Color( 1, 0.690196, 0.294118, 1 )
+polygon = PoolVector2Array( 0, 10, 7, 7, 10, 3, 10, -1, 8.7991, -5.47321, 4.79458, -8.39317, -0.0442123, -10.1451, -5.44218, -8.69476, -8.47039, -5.38978, -10.3058, -0.133847, -8.97095, 4.62152, -5.80071, 8.12547 )
 
 [node name="ShootCooldown" type="Timer" parent="."]
 wait_time = 0.2

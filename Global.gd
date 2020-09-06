@@ -29,6 +29,46 @@ const DUNGEON_SIZE: int = DUNGEON_WIDTH * DUNGEON_HEIGHT
 const DUNGEON_ADDITIONAL_DOORS: float = 0.0
 var dungeon_layout: DungeonLayout
 
+var paused: bool = false setget set_paused
+var frozen: bool = false setget set_frozen
+
+const ACTIONS_TO_TRACK: PoolStringArray = PoolStringArray(["set_red", "set_green", "set_blue"])
+var inputs_by_action: Dictionary = {}
+
+func get_inputs(actions: PoolStringArray) -> Array:
+    var matching_inputs: Array = []
+    for action in actions:
+        if inputs_by_action.has(action):
+            for action_pair in inputs_by_action[action]:
+                matching_inputs.append(action_pair)
+            var erased_successfully: bool = inputs_by_action.erase(action)
+            assert(erased_successfully)
+    if matching_inputs.empty():
+        return []
+    
+    matching_inputs.sort_custom(self, "compare_action_pairs")
+    var result: Array = []
+    for input_pair in matching_inputs:
+        result.append(input_pair[1])
+    return result
+
+func compare_action_pairs(first: Array, second: Array) -> bool:
+    return first[0] < second[0]
+
+func set_paused(new_paused: bool) -> void:
+    paused = new_paused
+    get_tree().paused = paused or frozen
+    var explicitly_pausable: Array = get_tree().get_nodes_in_group("explicitly_pausable")
+    for _node in explicitly_pausable:
+        var node: Node = _node
+        node.pause_mode = PAUSE_MODE_STOP if paused else PAUSE_MODE_PROCESS
+
+func set_frozen(new_frozen: bool) -> void:
+    if not frozen and new_frozen:
+        inputs_by_action = {}
+    frozen = new_frozen
+    get_tree().paused = paused or frozen
+
 func _init() -> void:
     reset()
 
@@ -106,14 +146,20 @@ func reset() -> void:
 
 func change_scene(new_scene: String) -> void:
     var result: int = get_tree().change_scene(new_scene)
-    get_tree().paused = false
     if result != OK:
         LOG.error("Error [%d] when loading scene %s" % [result, new_scene])
 
-func _input(event: InputEvent):
+func _input(event: InputEvent) -> void:
     if event.is_action_pressed("pause"):
         LOG.info("Pause pressed")
-        get_tree().paused = not get_tree().paused
+        self.paused = not paused
+    elif frozen and not paused:
+        for action_name in ACTIONS_TO_TRACK:
+            if event.is_action(action_name):
+                if not inputs_by_action.has(action_name):
+                    inputs_by_action[action_name] = []
+                inputs_by_action[action_name].append([OS.get_ticks_msec(), event])
+                break
 
 func get_map() -> TileMap:
     var nodes: Array = get_tree().get_nodes_in_group("map")
