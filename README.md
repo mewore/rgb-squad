@@ -43,9 +43,9 @@
   - [ ] :droplet: Blue - ice
     - Effect: Freezes the enemy for a short amount of time (e.g. 0.1s)
 - [x] The 3 player characters have their own health bars
-- [ ] Main menu
-- [ ] Add a font ([JELLEE TYPEFACE](https://fontlibrary.org/en/font/jellee-typeface))
-- [ ] Pause menu
+- [x] Main menu
+- [x] Add a font ([JELLEE TYPEFACE](https://fontlibrary.org/en/font/jellee-typeface))
+- [x] Pause menu
 
 ### Additional features
 - [ ] Smoother transition of player colours

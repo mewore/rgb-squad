@@ -2,6 +2,8 @@ extends Node
 
 signal player_damaged(old_hp, new_hp)
 signal room_cleared(cleared_rooms, total_rooms)
+signal paused()
+signal unpaused()
 
 var LOG: Log = LogManager.get_log(self)
 
@@ -56,6 +58,11 @@ func compare_action_pairs(first: Array, second: Array) -> bool:
     return first[0] < second[0]
 
 func set_paused(new_paused: bool) -> void:
+    if new_paused != paused:
+        if new_paused:
+            emit_signal("paused")
+        else:
+            emit_signal("unpaused")
     paused = new_paused
     get_tree().paused = paused or frozen
     var explicitly_pausable: Array = get_tree().get_nodes_in_group("explicitly_pausable")
