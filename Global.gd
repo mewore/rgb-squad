@@ -11,10 +11,28 @@ var game_won: bool = false
 onready var GAME_BEGIN_SCENE = "res://Game.tscn"
 onready var GAME_LOST_SCENE = "res://Game.tscn"
 onready var GAME_WON_SCENE = "res://Game.tscn"
+onready var GAME_SCENE = "res://Game.tscn"
 
 # Player properties
 const MAX_PLAYER_HP: int = 5
 var player_hp: int = MAX_PLAYER_HP setget set_player_hp
+
+var cleared_rooms: Dictionary = {}
+var current_room_x: int = 0
+var current_room_y: int = 0
+var room_is_cleared: bool = false
+var room_enter_direction: Vector2 = Vector2.UP
+
+func _encode_room(room_x: int, room_y: int) -> int:
+    return (room_x << 30) + room_y
+
+func go_to_room(direction: Vector2) -> void:
+    cleared_rooms[_encode_room(current_room_x, current_room_y)] = true
+    current_room_x += int(direction.x)
+    current_room_y += int(direction.y)
+    room_is_cleared = cleared_rooms.has(_encode_room(current_room_x, current_room_y))
+    room_enter_direction = direction
+    change_scene(GAME_SCENE)
 
 func set_player_hp(new_player_hp: int) -> void:
     var old_player_hp: int = player_hp
@@ -64,6 +82,10 @@ func lose_game() -> void:
 
 func reset() -> void:
     player_hp = MAX_PLAYER_HP
+    cleared_rooms = {}
+    current_room_x = 0
+    current_room_y = 0
+    room_is_cleared = false
 
 func change_scene(new_scene: String) -> void:
     var result: int = get_tree().change_scene(new_scene)
@@ -104,4 +126,10 @@ func get_bullet_container() -> Node2D:
     var nodes: Array = get_tree().get_nodes_in_group("bullet_container")
     if nodes.size() > 1:
         LOG.warn("There is more than one bullet container! Using the first one...")
+    return nodes[0]
+
+func get_room_center() -> Node2D:
+    var nodes: Array = get_tree().get_nodes_in_group("room_center")
+    if nodes.size() > 1:
+        LOG.warn("There is more than one room center! Using the first one...")
     return nodes[0]

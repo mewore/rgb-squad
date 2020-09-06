@@ -24,7 +24,10 @@ onready var HURTBOX: Area2D = $Hurtbox
 onready var INITIAL_PHYSICS_LAYER: int = HURTBOX.collision_layer
 
 func _ready() -> void:
-    update_colour()
+    if Global.room_is_cleared:
+        queue_free()
+    else:
+        update_colour()
 
 func set_colour(new_colour: int) -> void:
     colour = new_colour

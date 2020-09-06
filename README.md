@@ -16,8 +16,8 @@
   - [x] Make an empty base room and another that inherits it
   - [x] Make the room destroy the enemy bullets when they die
   - [x] Make the room open its "doors" when the enemies are dead
-  - [ ] When the player exits the level, reinitialize the game scene with a random room
-  - [ ] Remember the state of the visited rooms (As packed scenes? No, just assume the enemies are dead since that is a prerequisite for leaving the room)
+  - [x] When the player exits the level, reinitialize the game scene with a random room
+  - [x] Remember the state of the visited rooms (As packed scenes? No, just assume the enemies are dead since that is a prerequisite for leaving the room)
   - [ ] Automatically generate a tree-like dungeon structure and use it to determine in which directions the player can go (DungeonLayout.gd). Use Kruskal's algorithm with randomized edges between the rooms to generate the tree.
 - [ ] Score = rooms cleared
 - [ ] Counter before the game begins

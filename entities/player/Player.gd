@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 class_name Player
 
+onready var WINDOW_HEIGHT: float = ProjectSettings.get_setting("display/window/size/height")
 onready var BULLET_CONTAINER: Node2D = Global.get_bullet_container()
 export(PackedScene) var BULLET_SCENE: PackedScene
 const BULLET_SPEED: float = 500.0
@@ -22,7 +23,11 @@ onready var INITIAL_PHYSICS_LAYER: int = HURTBOX.collision_layer
 
 func _ready() -> void:
     update_colour()
-    self.is_shooting = true
+    
+    var center_position: Vector2 = Global.get_room_center().position
+    var distance_from_center: float = center_position.distance_to(position)
+    position = center_position + \
+        Global.room_enter_direction * -distance_from_center
 
 func set_colour(new_colour: int) -> void:
     colour = new_colour
