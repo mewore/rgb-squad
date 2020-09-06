@@ -34,7 +34,7 @@ script = SubResource( 1 )
 [node name="Player" parent="." groups=[
 "player",
 ] instance=ExtResource( 2 )]
-position = Vector2( 272, 160 )
+position = Vector2( 552, 320 )
 
 [node name="BulletContainer" type="Node2D" parent="." groups=[
 "bullet_container",
@@ -43,23 +43,23 @@ position = Vector2( 272, 160 )
 [node name="Hud" type="CanvasLayer" parent="."]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Hud"]
-margin_left = 320.0
-margin_right = 512.0
-margin_bottom = 300.0
+margin_left = 640.0
+margin_right = 1024.0
+margin_bottom = 600.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Spacer2" type="Control" parent="Hud/HBoxContainer"]
-margin_right = 17.0
-margin_bottom = 300.0
+margin_right = 113.0
+margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Hud/HBoxContainer"]
-margin_left = 21.0
-margin_right = 171.0
-margin_bottom = 300.0
+margin_left = 117.0
+margin_right = 267.0
+margin_bottom = 600.0
 rect_min_size = Vector2( 150, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -105,8 +105,8 @@ align = 1
 script = ExtResource( 4 )
 
 [node name="Spacer" type="Control" parent="Hud/HBoxContainer"]
-margin_left = 175.0
-margin_right = 192.0
-margin_bottom = 300.0
+margin_left = 271.0
+margin_right = 384.0
+margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3

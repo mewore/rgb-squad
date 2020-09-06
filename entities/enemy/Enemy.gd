@@ -11,7 +11,7 @@ onready var BULLET_CONTAINER: Node2D = Global.get_bullet_container()
 export(float) var MAX_HP: int = 3
 var hp = MAX_HP
 
-export(float) var BULLET_SPEED: int = 100.0
+export(float) var BULLET_SPEED: int = 200.0
 
 onready var SPRITE: Sprite = $Sprite
 var COLOUR_MAP: Dictionary = {

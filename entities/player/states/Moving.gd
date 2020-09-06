@@ -1,6 +1,6 @@
 extends PlayerState
 
-export(float) var MAX_SPEED: float = 120.0
+export(float) var MAX_SPEED: float = 200.0
 export(float) var FULL_ACCELERATION_TIME: float = 0.06
 var ACCELERATION: float = MAX_SPEED / FULL_ACCELERATION_TIME
 var motion: Vector2 = Vector2.ZERO

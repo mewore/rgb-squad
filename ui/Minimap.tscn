@@ -6,20 +6,21 @@
 [node name="Minimap" type="Control"]
 margin_right = 64.0
 margin_bottom = 64.0
-rect_min_size = Vector2( 64, 64 )
+rect_min_size = Vector2( 128, 128 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 MINIMAP_ROOM_SCENE = ExtResource( 1 )
+ROOM_SIZE = Vector2( 32, 32 )
 
 [node name="Background" type="Polygon2D" parent="."]
 color = Color( 0, 0, 0, 1 )
-polygon = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
+polygon = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
 
 [node name="Border" type="Line2D" parent="."]
-points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64, 0, 0 )
-width = 1.0
+points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128, 0, 0 )
+width = 2.0
 default_color = Color( 0.231373, 0.266667, 0.443137, 1 )
 joint_mode = 2
 begin_cap_mode = 2
