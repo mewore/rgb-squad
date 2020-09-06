@@ -30,7 +30,6 @@ func _init() -> void:
     reset()
 
 func go_to_room(direction: Vector2) -> void:
-    dungeon_layout.current_room.cleared = true
     dungeon_layout.move(int(direction.x), int(direction.y))
     room_is_cleared = dungeon_layout.current_room.cleared
     room_enter_direction = direction

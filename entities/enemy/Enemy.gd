@@ -17,7 +17,7 @@ onready var SPRITE: Sprite = $Sprite
 var COLOUR_MAP: Dictionary = {
     Types.RgbColour.RED: Color.indianred,
     Types.RgbColour.GREEN: Color.aquamarine,
-    Types.RgbColour.BLUE: Color.indigo,
+    Types.RgbColour.BLUE: Color.mediumslateblue,
 }
 var colour: int = randi() % 3
 onready var HURTBOX: Area2D = $Hurtbox

@@ -23,7 +23,7 @@
 - [ ] Counter before the game begins
 - [ ] Health display (just text)
 - [ ] Add room variations
-- [ ] Add a simple minimap
+- [x] Add a simple minimap
 
 ### Main features
 - [ ] Hi-scores

@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/MinimapRoom.gd" type="Script" id=1]
+
+[node name="MinimapRoom" type="Polygon2D"]
+polygon = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+script = ExtResource( 1 )
+
+[node name="Doors" type="Node2D" parent="."]
+modulate = Color( 0.46875, 0.443716, 0.239868, 1 )
+
+[node name="Right" type="Polygon2D" parent="Doors"]
+position = Vector2( 16, 4 )
+polygon = PoolVector2Array( 0, 0, 4, 0, 4, 8, 0, 8 )
+
+[node name="Down" type="Polygon2D" parent="Doors"]
+position = Vector2( 12, 16 )
+rotation = 1.57079
+polygon = PoolVector2Array( 0, 0, 4, 0, 4, 8, 0, 8 )
+
+[node name="Left" type="Polygon2D" parent="Doors"]
+position = Vector2( 0, 12 )
+rotation = 3.14159
+polygon = PoolVector2Array( 0, 0, 4, 0, 4, 8, 0, 8 )
+
+[node name="Up" type="Polygon2D" parent="Doors"]
+position = Vector2( 4, 0 )
+rotation = -1.5708
+polygon = PoolVector2Array( 0, 0, 4, 0, 4, 8, 0, 8 )

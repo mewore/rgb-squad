@@ -26,13 +26,15 @@ func _ready() -> void:
 
     if Global.room_is_cleared:
         open_doors()
-    else:
+    elif enemies_left:
         LOG.info("Enemy count: %d" % [enemies_left])
         for _enemy in ENEMY_CONTAINER.get_children():
             LOG.info("Connecting enemy...")
             var enemy: Enemy = _enemy
             LOG.check_error_code(enemy.connect("dead", self, "_on_enemy_dead"),
                 "Connecting an enemy's 'dead' signal to the room's '_on_enemy_dead' method")
+    else:
+        open_doors()
 
 func _process(_delta: float) -> void:
     if is_open:
@@ -70,3 +72,4 @@ func open_doors() -> void:
         if Global.dungeon_layout.current_room.has_door(delta_x, delta_y):
             COMMON_MAP.set_cell(cell.x, cell.y, -1)
     is_open = true
+    Global.dungeon_layout.current_room.cleared = true

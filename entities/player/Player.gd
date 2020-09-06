@@ -13,7 +13,7 @@ onready var SPRITE: Sprite = $Sprite
 var COLOUR_MAP: Dictionary = {
     Types.RgbColour.RED: Color.indianred,
     Types.RgbColour.GREEN: Color.aquamarine,
-    Types.RgbColour.BLUE: Color.indigo,
+    Types.RgbColour.BLUE: Color.mediumslateblue,
 }
 export(Types.RgbColour) var colour: int = Types.RgbColour.RED setget set_colour
 

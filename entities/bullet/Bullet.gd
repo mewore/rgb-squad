@@ -25,7 +25,7 @@ export(Types.RgbColour) var colour: int = Types.RgbColour.RED
 var COLOUR_MAP: Dictionary = {
     Types.RgbColour.RED: Color.indianred,
     Types.RgbColour.GREEN: Color.aquamarine,
-    Types.RgbColour.BLUE: Color.indigo,
+    Types.RgbColour.BLUE: Color.mediumslateblue,
 }
 
 func _ready() -> void:
