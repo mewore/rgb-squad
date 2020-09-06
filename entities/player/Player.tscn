@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://entities/player/Player.gd" type="Script" id=1]
-[ext_resource path="res://entities/player/player.png" type="Texture" id=2]
+[ext_resource path="res://entities/player/JellyBun.png" type="Texture" id=2]
 [ext_resource path="res://entities/StateMachine.gd" type="Script" id=3]
 [ext_resource path="res://entities/player/states/Moving.gd" type="Script" id=4]
 [ext_resource path="res://entities/bullet/PlayerBullet.tscn" type="PackedScene" id=5]
@@ -15,6 +15,105 @@ radius = 18.0
 [sub_resource type="CircleShape2D" id=3]
 radius = 9.0
 
+[sub_resource type="Animation" id=4]
+resource_name = "back_idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "back_run"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 10, 11 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "front_idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "front_run"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 6, 7 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "left_idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "left_run"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
 ]]
@@ -25,10 +124,6 @@ BULLET_SCENE = ExtResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -3 )
 shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -6 )
-texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = 8.0
@@ -64,6 +159,23 @@ collision_mask = 2147483648
 position = Vector2( 0, -3.77976 )
 shape = SubResource( 3 )
 
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -6 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 2 )
+vframes = 6
+hframes = 2
+frame = 6
+
 [node name="ShootCooldown" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "front_idle"
+anims/back_idle = SubResource( 4 )
+anims/back_run = SubResource( 8 )
+anims/front_idle = SubResource( 5 )
+anims/front_run = SubResource( 9 )
+anims/left_idle = SubResource( 6 )
+anims/left_run = SubResource( 7 )
 [connection signal="timeout" from="ShootCooldown" to="." method="_on_ShootCooldown_timeout"]

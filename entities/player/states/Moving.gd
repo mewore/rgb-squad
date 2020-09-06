@@ -12,6 +12,14 @@ func physics_process(delta: float) -> void:
     
     if input_x or input_y:
         player.shooting_angle = input_vector.angle()
+        if input_x:
+            player.facing_direction = Types.Direction.RIGHT if input_x > 0 else Types.Direction.LEFT
+        else:
+            player.facing_direction = Types.Direction.DOWN if input_y > 0 else Types.Direction.UP
+        player.moving = true
+    else:
+        player.moving = false
+    
     
     player.is_shooting = Input.is_action_pressed("shoot")
     

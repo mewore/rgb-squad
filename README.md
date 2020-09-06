@@ -27,7 +27,8 @@
 
 ### Main features
 - [ ] Hi-scores
-- [ ] Player sprite
+- [x] Player sprite
+- [ ] Different player sprites for the different colours
 - [ ] Enemy sprites
 - [ ] Terrain (walls, doors, floor, etc.)
 - [ ] HP display
