@@ -19,7 +19,7 @@
   - [x] When the player exits the level, reinitialize the game scene with a random room
   - [x] Remember the state of the visited rooms (As packed scenes? No, just assume the enemies are dead since that is a prerequisite for leaving the room)
   - [x] Automatically generate a tree-like dungeon structure and use it to determine in which directions the player can go (DungeonLayout.gd). Use Kruskal's algorithm with randomized edges between the rooms to generate the tree.
-- [ ] Score = rooms cleared
+- [x] Score = rooms cleared
 - [x] Counter when entering a room with enemies
 - [x] Health display (just text)
 - [x] Add room variations
@@ -31,7 +31,7 @@
 - [ ] Enemy sprites
 - [ ] Terrain (walls, doors, floor, etc.)
 - [ ] HP display
-- [ ] Score display
+- [x] Score display
 - [ ] Enemies may drop HP
 - [ ] When hurt: game freeze (momentary) followed by a camera shake
 - [ ] Enemies with melee attacks

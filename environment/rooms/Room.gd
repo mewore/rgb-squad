@@ -24,7 +24,7 @@ func _ready() -> void:
         var tile: Vector2 = _tile
         COMMON_MAP.set_cell(int(tile.x), int(tile.y), wall_tile_id)
 
-    if Global.room_is_cleared:
+    if Global.is_room_cleared():
         open_doors()
     elif enemies_left:
         LOG.info("Enemy count: %d" % [enemies_left])
@@ -36,6 +36,7 @@ func _ready() -> void:
         Global.do_room_countdown()
     else:
         open_doors()
+        Global.clear_room()
 
 func _process(_delta: float) -> void:
     if is_open:
@@ -55,6 +56,7 @@ func _on_enemy_dead() -> void:
     if enemies_left <= 0:
         destroy_bullets()
         open_doors()
+        Global.clear_room()
 
 func destroy_bullets() -> void:
     for _bullet in get_tree().get_nodes_in_group("enemy_bullets"):
@@ -73,4 +75,3 @@ func open_doors() -> void:
         if Global.dungeon_layout.current_room.has_door(delta_x, delta_y):
             COMMON_MAP.set_cell(int(cell.x), int(cell.y), -1)
     is_open = true
-    Global.dungeon_layout.current_room.cleared = true

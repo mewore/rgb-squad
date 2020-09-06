@@ -1,6 +1,7 @@
 extends Node
 
 signal player_damaged(old_hp, new_hp)
+signal room_cleared(cleared_rooms, total_rooms)
 
 var LOG: Log = LogManager.get_log(self)
 
@@ -18,12 +19,12 @@ const MAX_PLAYER_HP: int = 5
 var player_hp: int = MAX_PLAYER_HP setget set_player_hp
 var player_colour: int
 
-var cleared_rooms: Dictionary = {}
-var room_is_cleared: bool = false
+var cleared_rooms: int = 0
 var room_enter_direction: Vector2 = Vector2.UP
 
-const DUNGEON_WIDTH: int = 3
-const DUNGEON_HEIGHT: int = 3
+const DUNGEON_WIDTH: int = 10
+const DUNGEON_HEIGHT: int = 10
+const DUNGEON_SIZE: int = DUNGEON_WIDTH * DUNGEON_HEIGHT
 const DUNGEON_ADDITIONAL_DOORS: float = 0.0
 var dungeon_layout: DungeonLayout
 
@@ -34,9 +35,16 @@ func _init() -> void:
 
 func go_to_room(direction: Vector2) -> void:
     dungeon_layout.move(int(direction.x), int(direction.y))
-    room_is_cleared = dungeon_layout.current_room.cleared
     room_enter_direction = direction
     change_scene(GAME_SCENE)
+
+func clear_room() -> void:
+    dungeon_layout.current_room.cleared = true
+    cleared_rooms += 1
+    emit_signal("room_cleared", cleared_rooms, DUNGEON_SIZE)
+
+func is_room_cleared() -> bool:
+    return dungeon_layout.current_room.cleared
 
 func set_player_hp(new_player_hp: int) -> void:
     var old_player_hp: int = player_hp
@@ -87,10 +95,9 @@ func lose_game() -> void:
 func reset() -> void:
     player_hp = MAX_PLAYER_HP
     player_colour = Types.RgbColour.RED
-    cleared_rooms = {}
+    cleared_rooms = 0
     dungeon_layout = DungeonLayout.new(
         DUNGEON_WIDTH, DUNGEON_HEIGHT, DUNGEON_ADDITIONAL_DOORS)
-    room_is_cleared = false
     room_enter_direction = Vector2.ZERO
 
 func change_scene(new_scene: String) -> void:
