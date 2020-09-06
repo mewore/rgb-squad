@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/JellyBunBig.png-0d8fd65417cddfca425f841a177061da.stex"
+path="res://.import/FireBun.png-a804c5a117f055fa819a4da0b85da0a1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/JellyBunBig.png"
-dest_files=[ "res://.import/JellyBunBig.png-0d8fd65417cddfca425f841a177061da.stex" ]
+source_file="res://entities/player/FireBun.png"
+dest_files=[ "res://.import/FireBun.png-a804c5a117f055fa819a4da0b85da0a1.stex" ]
 
 [params]
 

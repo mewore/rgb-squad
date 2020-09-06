@@ -1,10 +1,12 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://entities/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://entities/player/JellyBun.png" type="Texture" id=2]
 [ext_resource path="res://entities/StateMachine.gd" type="Script" id=3]
 [ext_resource path="res://entities/player/states/Moving.gd" type="Script" id=4]
 [ext_resource path="res://entities/bullet/PlayerBullet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/player/FireBun.png" type="Texture" id=6]
+[ext_resource path="res://entities/player/IceBun.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.0
@@ -120,6 +122,9 @@ tracks/0/keys = {
 collision_layer = 0
 script = ExtResource( 1 )
 BULLET_SCENE = ExtResource( 5 )
+RED_SPRITE_TEXTURE = ExtResource( 6 )
+GREEN_SPRITE_TEXTURE = ExtResource( 2 )
+BLUE_SPRITE_TEXTURE = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -3 )
@@ -162,7 +167,7 @@ shape = SubResource( 3 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -6 )
 scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 2 )
+texture = ExtResource( 6 )
 vframes = 6
 hframes = 2
 frame = 6

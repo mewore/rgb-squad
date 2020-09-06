@@ -29,7 +29,6 @@ func _init(init_width: int, init_height: int, additional_doors: float) -> void:
     while file_name != "":
         if not directory.current_is_dir() and file_name.ends_with(".tscn") \
                 and file_name != BASE_ROOM_SCENE and file_name.begins_with("Room"):
-            print("Found scene: " + file_name)
             room_scenes.append(ROOM_SCENE_DIRECTORY + "/" + file_name)
         file_name = directory.get_next()
     

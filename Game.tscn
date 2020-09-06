@@ -32,7 +32,7 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Hud/HBoxContainer"]
 margin_left = 117.0
-margin_right = 317.0
+margin_right = 267.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 150, 0 )
 __meta__ = {
@@ -40,49 +40,81 @@ __meta__ = {
 }
 
 [node name="MinimapTitle" type="Label" parent="Hud/HBoxContainer/VBoxContainer"]
-margin_right = 200.0
+margin_right = 150.0
 margin_bottom = 14.0
 text = "Minimap"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Hud/HBoxContainer/VBoxContainer"]
 margin_top = 18.0
-margin_right = 200.0
+margin_right = 150.0
 margin_bottom = 146.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Spacer1" type="Control" parent="Hud/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_right = 32.0
+margin_right = 7.0
 margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Minimap" parent="Hud/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 36.0
-margin_right = 164.0
+margin_left = 11.0
+margin_right = 139.0
 margin_bottom = 128.0
 
 [node name="Spacer2" type="Control" parent="Hud/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 168.0
-margin_right = 200.0
+margin_left = 143.0
+margin_right = 150.0
 margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HpDisplay" type="Label" parent="Hud/HBoxContainer/VBoxContainer"]
 margin_top = 150.0
-margin_right = 200.0
+margin_right = 150.0
 margin_bottom = 164.0
 text = "HP: 123"
 align = 1
 script = ExtResource( 4 )
 
-[node name="RoomDisplay" type="Label" parent="Hud/HBoxContainer/VBoxContainer"]
+[node name="RedHpDisplay" type="Label" parent="Hud/HBoxContainer/VBoxContainer"]
+self_modulate = Color( 1, 0.32, 0.331333, 0.858824 )
 margin_top = 168.0
-margin_right = 200.0
+margin_right = 150.0
 margin_bottom = 182.0
+text = "HP: 123"
+align = 1
+script = ExtResource( 4 )
+SHOW_SPECIFIC_COLOUR = true
+
+[node name="GreenHpDisplay" type="Label" parent="Hud/HBoxContainer/VBoxContainer"]
+self_modulate = Color( 0.321569, 1, 0.47451, 0.858824 )
+margin_top = 186.0
+margin_right = 150.0
+margin_bottom = 200.0
+text = "HP: 123"
+align = 1
+script = ExtResource( 4 )
+SHOW_SPECIFIC_COLOUR = true
+COLOUR = 1
+
+[node name="BlueHpDisplay" type="Label" parent="Hud/HBoxContainer/VBoxContainer"]
+self_modulate = Color( 0.321569, 0.411765, 1, 0.858824 )
+margin_top = 204.0
+margin_right = 150.0
+margin_bottom = 218.0
+text = "HP: 123"
+align = 1
+script = ExtResource( 4 )
+SHOW_SPECIFIC_COLOUR = true
+COLOUR = 2
+
+[node name="RoomDisplay" type="Label" parent="Hud/HBoxContainer/VBoxContainer"]
+margin_top = 222.0
+margin_right = 150.0
+margin_bottom = 236.0
 text = "Cleared rooms: 0/1000"
 align = 1
 script = ExtResource( 2 )

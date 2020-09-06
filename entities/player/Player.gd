@@ -15,6 +15,14 @@ onready var SPRITE: Sprite = $Sprite
 onready var INITIAL_SPRITE_X_SCALE: float = SPRITE.scale.x
 onready var ANIMATION_PLAYER: AnimationPlayer = $AnimationPlayer
 
+export(Texture) var RED_SPRITE_TEXTURE: Texture
+export(Texture) var GREEN_SPRITE_TEXTURE: Texture
+export(Texture) var BLUE_SPRITE_TEXTURE: Texture
+var SPRITE_TEXTURE_MAP: Dictionary = {
+    Types.RgbColour.RED: RED_SPRITE_TEXTURE,
+    Types.RgbColour.GREEN: GREEN_SPRITE_TEXTURE,
+    Types.RgbColour.BLUE: BLUE_SPRITE_TEXTURE,
+}
 var COLOUR_MAP: Dictionary = {
     Types.RgbColour.RED: Color.indianred,
     Types.RgbColour.GREEN: Color.aquamarine,
@@ -69,7 +77,16 @@ func set_colour(new_colour: int) -> void:
     update_colour()
 
 func update_colour() -> void:
-    SPRITE.self_modulate = COLOUR_MAP[colour]
+    match colour:
+        Types.RgbColour.RED:
+            SPRITE.texture = RED_SPRITE_TEXTURE
+        Types.RgbColour.GREEN:
+            SPRITE.texture = GREEN_SPRITE_TEXTURE
+        Types.RgbColour.BLUE:
+            SPRITE.texture = BLUE_SPRITE_TEXTURE
+            
+    # TODO: Fix this
+#    SPRITE.texture = SPRITE_TEXTURE_MAP[colour]
     HURTBOX.collision_layer = INITIAL_PHYSICS_LAYER << colour
 
 func take_damage(damage: int) -> void:

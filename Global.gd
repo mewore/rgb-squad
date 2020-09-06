@@ -16,8 +16,9 @@ onready var GAME_SCENE = "res://Game.tscn"
 
 # Player properties
 const MAX_PLAYER_HP: int = 5
+var player_hp_per_colour: PoolIntArray = [MAX_PLAYER_HP, MAX_PLAYER_HP, MAX_PLAYER_HP]
 var player_hp: int = MAX_PLAYER_HP setget set_player_hp
-var player_colour: int
+var player_colour: int setget set_player_colour
 
 var cleared_rooms: int = 0
 var room_enter_direction: Vector2 = Vector2.UP
@@ -46,9 +47,14 @@ func clear_room() -> void:
 func is_room_cleared() -> bool:
     return dungeon_layout.current_room.cleared
 
+func set_player_colour(new_player_colour: int) -> void:
+    player_colour = new_player_colour
+    player_hp = player_hp_per_colour[player_colour]
+
 func set_player_hp(new_player_hp: int) -> void:
     var old_player_hp: int = player_hp
     player_hp = new_player_hp
+    player_hp_per_colour[player_colour] = new_player_hp
     if new_player_hp < old_player_hp:
         emit_signal("player_damaged", old_player_hp, new_player_hp)
     if new_player_hp <= 0:

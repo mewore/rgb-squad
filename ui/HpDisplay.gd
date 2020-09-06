@@ -1,5 +1,8 @@
 extends Label
 
+export(bool) var SHOW_SPECIFIC_COLOUR: bool = false
+export(Types.RgbColour) var COLOUR: int = Types.RgbColour.RED
+
 var LOG: Log = LogManager.get_log(self)
 
 func _ready() -> void:
@@ -11,4 +14,6 @@ func _on_player_damaged(_old_player_hp: int, _new_player_hp: int) -> void:
     update()
 
 func update() -> void:
-    text = "HP: %d/%d" % [Global.player_hp, Global.MAX_PLAYER_HP]
+    var player_hp: int = Global.player_hp_per_colour[COLOUR] if SHOW_SPECIFIC_COLOUR \
+        else Global.player_hp
+    text = "HP: %d/%d" % [player_hp, Global.MAX_PLAYER_HP]

@@ -28,7 +28,7 @@
 ### Main features
 - [ ] Hi-scores
 - [x] Player sprite
-- [ ] Different player sprites for the different colours
+- [x] Different player sprites for the different colours
 - [ ] Enemy sprites
 - [ ] Terrain (walls, doors, floor, etc.)
 - [ ] HP display
@@ -37,7 +37,7 @@
 - [ ] When hurt: game freeze (momentary) followed by a camera shake
 - [ ] Enemies with melee attacks
 - [ ] 3 player characters (R = shotgun/fire, G = laser, B = melee)
-- [ ] The 3 player characters have their own health bars
+- [x] The 3 player characters have their own health bars
 - [ ] Random upgrades, specific to every player kind
 - [ ] More enemy types with harder to dodge attacks
 - [ ] Main menu
