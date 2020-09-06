@@ -3,6 +3,7 @@ extends Node2D
 class_name Enemy
 
 signal dead()
+signal done_reloading()
 
 export(PackedScene) var BULLET_SCENE: PackedScene
 onready var PLAYER: Node2D = Global.get_player()
@@ -14,6 +15,7 @@ var hp = MAX_HP
 export(float) var BULLET_SPEED: int = 200.0
 
 onready var SPRITE: Sprite = $Sprite
+onready var ANIMATION_PLAYER: AnimationPlayer = $AnimationPlayer
 var COLOUR_MAP: Dictionary = {
     Types.RgbColour.RED: Color.indianred,
     Types.RgbColour.GREEN: Color.aquamarine,
@@ -36,6 +38,14 @@ func set_colour(new_colour: int) -> void:
 func update_colour() -> void:
     SPRITE.self_modulate = COLOUR_MAP[colour]
     HURTBOX.collision_layer = INITIAL_PHYSICS_LAYER << colour
+
+func start_shooting() -> void:
+    ANIMATION_PLAYER.play("shooting")
+
+func reload() -> void:
+    ANIMATION_PLAYER.play("reloading")
+    yield(ANIMATION_PLAYER, "animation_finished")
+    emit_signal("done_reloading")
 
 func shoot_at_player() -> void:
     var bullet: Bullet = BULLET_SCENE.instance()

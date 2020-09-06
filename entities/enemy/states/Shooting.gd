@@ -1,25 +1,14 @@
 extends EnemyState
 
-onready var COOLDOWN: Timer = $Cooldown
 onready var DURATION: Timer = $Duration
-onready var RELOAD: Timer = $Reload
 
 func enter() -> void:
-    COOLDOWN.start()
+    enemy.start_shooting()
     DURATION.start()
 
-func exit() -> void:
-    COOLDOWN.stop()
-    DURATION.stop()
-    RELOAD.stop()
-
-func _on_Cooldown_timeout():
-    enemy.shoot_at_player()
-
 func _on_Duration_timeout():
-    COOLDOWN.stop()
-    RELOAD.start()
+    enemy.reload()
 
-func _on_Reload_timeout():
-    COOLDOWN.start()
+func _on_Shooter_done_reloading():
+    enemy.start_shooting()
     DURATION.start()

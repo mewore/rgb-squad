@@ -1,13 +1,59 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://entities/enemy/enemy.png" type="Texture" id=1]
+[ext_resource path="res://entities/enemy/Slimer.png" type="Texture" id=1]
 [ext_resource path="res://entities/StateMachine.gd" type="Script" id=2]
 [ext_resource path="res://entities/enemy/Enemy.gd" type="Script" id=3]
 [ext_resource path="res://entities/enemy/states/Shooting.gd" type="Script" id=4]
 [ext_resource path="res://entities/bullet/EnemyBullet.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 14.0
+radius = 16.9119
+
+[sub_resource type="Animation" id=2]
+resource_name = "reloading"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "shooting"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot_at_player"
+} ]
+}
 
 [node name="Shooter" type="Node2D"]
 script = ExtResource( 3 )
@@ -15,7 +61,11 @@ BULLET_SCENE = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -6 )
+scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 1 )
+vframes = 2
+hframes = 2
+frame = 1
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -24,14 +74,8 @@ FIRST_STATE = NodePath("Shooting")
 [node name="Shooting" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
 
-[node name="Cooldown" type="Timer" parent="StateMachine/Shooting"]
-wait_time = 0.2
-
 [node name="Duration" type="Timer" parent="StateMachine/Shooting"]
 wait_time = 1.5
-one_shot = true
-
-[node name="Reload" type="Timer" parent="StateMachine/Shooting"]
 one_shot = true
 
 [node name="Hurtbox" type="Area2D" parent="."]
@@ -41,6 +85,9 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource( 1 )
-[connection signal="timeout" from="StateMachine/Shooting/Cooldown" to="StateMachine/Shooting" method="_on_Cooldown_timeout"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/reloading = SubResource( 2 )
+anims/shooting = SubResource( 3 )
+[connection signal="done_reloading" from="." to="StateMachine/Shooting" method="_on_Shooter_done_reloading"]
 [connection signal="timeout" from="StateMachine/Shooting/Duration" to="StateMachine/Shooting" method="_on_Duration_timeout"]
-[connection signal="timeout" from="StateMachine/Shooting/Reload" to="StateMachine/Shooting" method="_on_Reload_timeout"]

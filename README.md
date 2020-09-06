@@ -29,7 +29,7 @@
 - [ ] Hi-scores
 - [x] Player sprite
 - [x] Different player sprites for the different colours
-- [ ] Enemy sprites
+- [x] Enemy sprites
 - [ ] Terrain (walls, doors, floor, etc.)
 - [ ] HP display
 - [x] Score display

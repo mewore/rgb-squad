@@ -9,13 +9,13 @@
 [ext_resource path="res://entities/player/IceBun.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 12.0
+radius = 13.1033
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 18.0
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 9.0
+radius = 11.7436
 
 [sub_resource type="Animation" id=4]
 resource_name = "back_idle"
@@ -127,7 +127,7 @@ GREEN_SPRITE_TEXTURE = ExtResource( 2 )
 BLUE_SPRITE_TEXTURE = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -3 )
+position = Vector2( 0, 1.8695 )
 shape = SubResource( 1 )
 
 [node name="Label" type="Label" parent="."]
@@ -161,7 +161,7 @@ collision_layer = 2
 collision_mask = 2147483648
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2( 0, -3.77976 )
+position = Vector2( 0, 0.340586 )
 shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
