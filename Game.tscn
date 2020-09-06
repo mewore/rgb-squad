@@ -109,6 +109,8 @@ pause_mode = 1
 "bullet_container",
 ]]
 
+[node name="SortContainer" type="YSort" parent="Gameplay"]
+
 [node name="Border" parent="." instance=ExtResource( 5 )]
 
 [node name="Hud" type="CanvasLayer" parent="."]
@@ -128,7 +130,7 @@ rect_min_size = Vector2( 640, 600 )
 theme = ExtResource( 7 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "Paused.
-Press [Esc] to unpause"
+Press [Esc] or [Q] to unpause"
 align = 1
 valign = 1
 __meta__ = {

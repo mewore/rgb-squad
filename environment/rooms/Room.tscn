@@ -37,16 +37,19 @@ position = Vector2( 624, 320 )
 [node name="DoorTop" parent="." instance=ExtResource( 6 )]
 position = Vector2( 320, 64 )
 
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 544, 320 )
-
 [node name="DoorBottom" parent="." instance=ExtResource( 6 )]
 modulate = Color( 1, 1, 1, 0.784314 )
 position = Vector2( 320, 568 )
+z_index = 3
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="YSort" type="YSort" parent="."]
 
-[node name="Objects" type="Node2D" parent="."]
+[node name="Player" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 544, 320 )
+
+[node name="Enemies" type="YSort" parent="YSort"]
+
+[node name="Objects" type="YSort" parent="YSort"]
 
 [node name="PlayerMin" type="Node2D" parent="."]
 position = Vector2( 8, 8 )

@@ -8,9 +8,9 @@
 [ext_resource path="res://entities/enemy/states/Waiting.gd" type="Script" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 16.9119
+radius = 18.651
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "idle"
 length = 0.4
 loop = true
@@ -27,8 +27,7 @@ tracks/0/keys = {
 "values": [ 1, 0 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "reloading"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -42,8 +41,7 @@ tracks/0/keys = {
 "values": [ 1, 0 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "shooting"
+[sub_resource type="Animation" id=4]
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -73,7 +71,9 @@ tracks/1/keys = {
 } ]
 }
 
-[node name="Shooter" type="Node2D"]
+[node name="Shooter" type="Node2D" groups=[
+"y_sortable",
+]]
 script = ExtResource( 3 )
 BULLET_SCENE = ExtResource( 5 )
 
@@ -108,12 +108,13 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2( 0, -3.30356 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-anims/idle = SubResource( 4 )
-anims/reloading = SubResource( 2 )
-anims/shooting = SubResource( 3 )
+anims/idle = SubResource( 2 )
+anims/reloading = SubResource( 3 )
+anims/shooting = SubResource( 4 )
 [connection signal="done_reloading" from="." to="StateMachine/Shooting" method="_on_Shooter_done_reloading"]
 [connection signal="timeout" from="StateMachine/Shooting/Duration" to="StateMachine/Shooting" method="_on_Duration_timeout"]
