@@ -15,7 +15,9 @@ radius = 18.0
 [sub_resource type="CircleShape2D" id=3]
 radius = 9.0
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
 collision_layer = 0
 script = ExtResource( 1 )
 BULLET_SCENE = ExtResource( 5 )

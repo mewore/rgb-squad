@@ -22,7 +22,7 @@
 - [ ] Score = rooms cleared
 - [x] Counter when entering a room with enemies
 - [x] Health display (just text)
-- [ ] Add room variations
+- [x] Add room variations
 - [x] Add a simple minimap
 
 ### Main features

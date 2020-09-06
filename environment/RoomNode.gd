@@ -11,10 +11,17 @@ var position_x: int
 var position_y: int
 
 var cleared = false setget set_cleared
+var scene_path: String
 
-func _init(initial_position_x: int, initial_position_y: int) -> void:
+func _init(initial_position_x: int, initial_position_y: int,
+        init_scene: String) -> void:
     position_x = initial_position_x
     position_y = initial_position_y
+    scene_path = init_scene
+
+func get_scene() -> PackedScene:
+    var scene: PackedScene = load(scene_path)
+    return scene
 
 func get_root() -> RoomNode:
     var result: RoomNode = self

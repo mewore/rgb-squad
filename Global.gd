@@ -91,6 +91,7 @@ func reset() -> void:
     dungeon_layout = DungeonLayout.new(
         DUNGEON_WIDTH, DUNGEON_HEIGHT, DUNGEON_ADDITIONAL_DOORS)
     room_is_cleared = false
+    room_enter_direction = Vector2.ZERO
 
 func change_scene(new_scene: String) -> void:
     var result: int = get_tree().change_scene(new_scene)

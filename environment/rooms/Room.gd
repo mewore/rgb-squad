@@ -9,7 +9,7 @@ onready var COMMON_MAP: TileMap = $CommonMap
 onready var DOOR_TILES: PoolVector2Array = PoolVector2Array(
     COMMON_MAP.get_used_cells_by_id(COMMON_MAP.tile_set.find_tile_by_name("door")))
 
-onready var PLAYER: Node2D = Global.get_player()
+onready var PLAYER: Node2D = $Player
 onready var MIN_PLAYER_POS: Vector2 = to_global($PlayerMin.position)
 onready var MAX_PLAYER_POS: Vector2 = to_global($PlayerMax.position)
 

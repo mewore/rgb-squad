@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://environment/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://environment/rooms/Room.gd" type="Script" id=2]
+[ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=3]
 
 [node name="Room" type="Node2D"]
 script = ExtResource( 2 )
@@ -16,6 +17,9 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 544, 320 )
 
 [node name="Enemies" type="Node2D" parent="."]
 
