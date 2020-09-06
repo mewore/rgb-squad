@@ -16,6 +16,7 @@ onready var GAME_SCENE = "res://Game.tscn"
 # Player properties
 const MAX_PLAYER_HP: int = 5
 var player_hp: int = MAX_PLAYER_HP setget set_player_hp
+var player_colour: int
 
 var cleared_rooms: Dictionary = {}
 var room_is_cleared: bool = false
@@ -83,6 +84,7 @@ func lose_game() -> void:
 
 func reset() -> void:
     player_hp = MAX_PLAYER_HP
+    player_colour = Types.RgbColour.RED
     cleared_rooms = {}
     dungeon_layout = DungeonLayout.new(
         DUNGEON_WIDTH, DUNGEON_HEIGHT, DUNGEON_ADDITIONAL_DOORS)

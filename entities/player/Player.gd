@@ -15,7 +15,7 @@ var COLOUR_MAP: Dictionary = {
     Types.RgbColour.GREEN: Color.aquamarine,
     Types.RgbColour.BLUE: Color.mediumslateblue,
 }
-export(Types.RgbColour) var colour: int = Types.RgbColour.RED setget set_colour
+var colour: int = Global.player_colour setget set_colour
 
 onready var HURTBOX: Area2D = $Hurtbox
 onready var INITIAL_PHYSICS_LAYER: int = HURTBOX.collision_layer
@@ -30,6 +30,7 @@ func _ready() -> void:
 
 func set_colour(new_colour: int) -> void:
     colour = new_colour
+    Global.player_colour = colour
     update_colour()
 
 func update_colour() -> void:
