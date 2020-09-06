@@ -21,7 +21,7 @@
   - [x] Automatically generate a tree-like dungeon structure and use it to determine in which directions the player can go (DungeonLayout.gd). Use Kruskal's algorithm with randomized edges between the rooms to generate the tree.
 - [ ] Score = rooms cleared
 - [ ] Counter before the game begins
-- [ ] Health display (just text)
+- [x] Health display (just text)
 - [ ] Add room variations
 - [x] Add a simple minimap
 

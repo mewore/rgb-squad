@@ -6,7 +6,7 @@
 [node name="Minimap" type="Control"]
 margin_right = 64.0
 margin_bottom = 64.0
-rect_min_size = Vector2( 64, 0 )
+rect_min_size = Vector2( 64, 64 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
