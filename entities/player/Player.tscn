@@ -133,6 +133,10 @@ RED_SPRITE_TEXTURE = ExtResource( 6 )
 GREEN_SPRITE_TEXTURE = ExtResource( 2 )
 BLUE_SPRITE_TEXTURE = ExtResource( 7 )
 
+[node name="Shadow" type="Polygon2D" parent="."]
+color = Color( 0, 0, 0, 0.588235 )
+polygon = PoolVector2Array( -14.5759, 19.0192, -9.23649, 13.3461, 0.274246, 11.0101, 8.28329, 13.6798, 14.1232, 18.1849, 8.617, 22.69, 0.107391, 24.5254, -8.23536, 23.0237 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1.8695 )
 shape = SubResource( 1 )
@@ -163,12 +167,12 @@ FIRST_STATE = NodePath("Moving")
 script = ExtResource( 8 )
 
 [node name="MovingTime" type="Timer" parent="StateMachine/EnteringRoom"]
+wait_time = 0.5
 
 [node name="Waiting" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
 
 [node name="IdleTime" type="Timer" parent="StateMachine/Waiting"]
-wait_time = 0.5
 
 [node name="Moving" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
@@ -179,7 +183,6 @@ scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 7 )
 vframes = 6
 hframes = 2
-frame = 10
 
 [node name="Hurtbox" type="Area2D" parent="."]
 monitoring = false

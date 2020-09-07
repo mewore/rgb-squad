@@ -21,6 +21,7 @@ const MAX_PLAYER_HP: int = 5
 var player_hp_per_colour: PoolIntArray = [MAX_PLAYER_HP, MAX_PLAYER_HP, MAX_PLAYER_HP]
 var player_hp: int = MAX_PLAYER_HP setget set_player_hp
 var player_colour: int setget set_player_colour
+var player_power: PoolIntArray = [0, 0, 0]
 
 var cleared_rooms: int = 0
 var room_enter_direction: Vector2 = Vector2.UP
@@ -28,7 +29,7 @@ var room_enter_direction: Vector2 = Vector2.UP
 const DUNGEON_WIDTH: int = 10
 const DUNGEON_HEIGHT: int = 10
 const DUNGEON_SIZE: int = DUNGEON_WIDTH * DUNGEON_HEIGHT
-const DUNGEON_ADDITIONAL_DOORS: float = 0.0
+const DUNGEON_ADDITIONAL_DOORS: float = 0.1
 var dungeon_layout: DungeonLayout
 
 var paused: bool = false setget set_paused
@@ -146,6 +147,8 @@ func lose_game() -> void:
 func reset() -> void:
     player_hp = MAX_PLAYER_HP
     player_colour = Types.RgbColour.RED
+    player_hp_per_colour = [MAX_PLAYER_HP, MAX_PLAYER_HP, MAX_PLAYER_HP]
+    player_power = [0, 0, 0]
     cleared_rooms = 0
     dungeon_layout = DungeonLayout.new(
         DUNGEON_WIDTH, DUNGEON_HEIGHT, DUNGEON_ADDITIONAL_DOORS)

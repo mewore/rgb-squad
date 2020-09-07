@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ui/default-theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/fonts/jelee-big.tres" type="DynamicFont" id=2]
@@ -11,6 +11,22 @@ colors = PoolColorArray( 0.137255, 0.117647, 0.0980392, 1, 0.235294, 0.196078, 0
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
 width = 600
+
+[sub_resource type="Animation" id=3]
+resource_name = "blink"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1.0, 0.2, 1.0 ]
+}
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -121,6 +137,10 @@ margin_bottom = 444.0
 theme = ExtResource( 1 )
 text = "Press X to start"
 align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HBoxContainer/VBoxContainer/StartInstruction"]
+autoplay = "blink"
+anims/blink = SubResource( 3 )
 
 [node name="Spacer3" type="Control" parent="HBoxContainer/VBoxContainer"]
 margin_top = 448.0

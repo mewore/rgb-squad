@@ -18,7 +18,7 @@ func _init(init_width: int, init_height: int, additional_doors: float) -> void:
     width = init_width
     height = init_height
     
-    var room_scenes: PoolStringArray = PoolStringArray([])
+    var room_scenes: Array = []
     
     var directory: Directory = Directory.new()
     LOG.check_error_code(directory.open(ROOM_SCENE_DIRECTORY),
@@ -31,6 +31,8 @@ func _init(init_width: int, init_height: int, additional_doors: float) -> void:
                 and file_name != BASE_ROOM_SCENE and file_name.begins_with("Room"):
             room_scenes.append(ROOM_SCENE_DIRECTORY + "/" + file_name)
         file_name = directory.get_next()
+    
+    room_scenes.sort()
     
     var random: RandomNumberGenerator = RandomNumberGenerator.new()
     random.randomize()
@@ -67,8 +69,34 @@ func _init(init_width: int, init_height: int, additional_doors: float) -> void:
         var first_room: RoomNode = room_matrix[door[0][0]][door[0][1]]
         var second_room: RoomNode = room_matrix[door[1][0]][door[1][1]]
         first_room.make_door_to(second_room)
-        
+    
     current_room = room_matrix[starting_room_y][starting_room_x]
+    var max_room_distance: int = bfs(current_room)
+    for i in range(height):
+        for j in range(width):
+            var room: RoomNode = room_matrix[i][j]
+            var distance: int = room.distance
+            if distance > 0:
+                room.distance_ratio = float(distance) / float(max_room_distance)
+                var scene_index = int(floor(room.distance_ratio * room_scenes.size()))
+                room_matrix[i][j].scene_path = room_scenes[scene_index]
+
+func bfs(starting_node: RoomNode) -> int:
+    var queue: Array = [starting_node]
+    starting_node.distance = 0
+    var max_distance: int = 0
+    while !queue.empty():
+        var next_queue: Array = []
+        for _from_node in queue:
+            var from_node: RoomNode = _from_node
+            for _to_node in from_node.neighbours:
+                var to_node: RoomNode = _to_node
+                if to_node.distance > from_node.distance + 1:
+                    to_node.distance = from_node.distance + 1
+                    next_queue.append(to_node)
+        queue = next_queue
+        max_distance += 1
+    return max_distance
 
 func move(delta_x: int, delta_y: int) -> void:
     assert(current_room.has_door(delta_x, delta_y))

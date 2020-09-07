@@ -17,3 +17,6 @@ func update() -> void:
     var player_hp: int = Global.player_hp_per_colour[COLOUR] if SHOW_SPECIFIC_COLOUR \
         else Global.player_hp
     text = "HP: %d/%d" % [player_hp, Global.MAX_PLAYER_HP]
+    if not SHOW_SPECIFIC_COLOUR:
+        text = "Room distance: %d (%d%%)" % [Global.dungeon_layout.current_room.distance,
+            round(Global.dungeon_layout.current_room.distance_ratio * 100)]

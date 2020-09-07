@@ -35,22 +35,24 @@
 - [x] Score display
 - [ ] Enemies may drop HP
 - [x] When hurt: game freeze (momentary) followed by a camera shake
-- [ ] 3 player characters with different attacks (R = shotgun/fire, G = laser, B = melee)
-  - [ ] :fire: Red - fire
-    - Effect: big and homing
+- [x] 3 player characters with different attacks (R = shotgun/fire, G = laser, B = melee)
+  - [x] :fire: Red - fire
+    - Effect: homing
   - [x] :bug: Green - poison?
-    - Effect: destroys enemy bullets
-  - [ ] :droplet: Blue - ice
+    - Effect: pierces/destroys enemy bullets
+  - [x] :droplet: Blue - ice
     - Effect: Freezes the enemy for a short amount of time (e.g. 0.1s)
+    - Pierces enemies
 - [x] The 3 player characters have their own health bars
 - [x] Main menu
 - [x] Add a font ([JELLEE TYPEFACE](https://fontlibrary.org/en/font/jellee-typeface))
 - [x] Pause menu
 - [x] Fade in/out when moving between rooms
+- [x] The enemies get stronger
 
 ### Additional features
 - [ ] Smoother transition of player colours
-- [ ] Player shadow
+- [x] Player shadow
 - [ ] Enemy visual effect when hit (e.g. flashing white)
 - [ ] More enemy types with harder to dodge attacks
 - [ ] Random upgrades, specific to every player kind

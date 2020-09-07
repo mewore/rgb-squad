@@ -116,5 +116,8 @@ autoplay = "idle"
 anims/idle = SubResource( 2 )
 anims/reloading = SubResource( 3 )
 anims/shooting = SubResource( 4 )
+
+[node name="FreezeTimer" type="Timer" parent="."]
 [connection signal="done_reloading" from="." to="StateMachine/Shooting" method="_on_Shooter_done_reloading"]
 [connection signal="timeout" from="StateMachine/Shooting/Duration" to="StateMachine/Shooting" method="_on_Duration_timeout"]
+[connection signal="timeout" from="FreezeTimer" to="." method="_on_FreezeTimer_timeout"]

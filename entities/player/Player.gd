@@ -6,12 +6,21 @@ onready var BULLET_CONTAINER: Node2D = Global.get_bullet_container()
 export(PackedScene) var BULLET_SCENE: PackedScene
 const BULLET_SPEED: float = 1000.0
 const BULLET_SIZE: float = 4.0
+const POWER_BULLET_SIZE: float = 0.1
+const RED_HOMING_PER_POWER: float = 0.3
+const GREEN_BULLET_ABSORB_PER_POWER: float = 0.3
+const BLUE_ENEMY_PIERCE_PER_POWER: float = 0.1
+const BLUE_FREEZE_PER_POWER: float = 0.01
+const BULLET_DAMAGE_PER_POWER: float = 0.5
 const BULLET_OPACITY: float = 0.5
 var facing_direction: int = Types.Direction.DOWN setget set_facing_direction
 var moving: bool = false setget set_moving
 var shooting_angle: float = 0
 var is_shooting: bool = false setget set_is_shooting
 onready var SHOOT_COOLDOWN_TIMER: Timer = $ShootCooldown
+onready var SHOOT_COOLDOWN: float = SHOOT_COOLDOWN_TIMER.wait_time
+onready var SPEED_PER_POWER: float = 0.005
+onready var MIN_COOLDOWN: float = 0.05
 
 onready var STATE_MACHINE: StateMachine = $StateMachine
 
@@ -97,6 +106,10 @@ func update_colour() -> void:
     # TODO: Fix this
 #    SPRITE.texture = SPRITE_TEXTURE_MAP[colour]
     HURTBOX.collision_layer = INITIAL_PHYSICS_LAYER << colour
+    
+    var power_ratio: float = sqrt(Global.player_power[colour])
+    SHOOT_COOLDOWN_TIMER.wait_time = max(
+        SHOOT_COOLDOWN - power_ratio * SPEED_PER_POWER, MIN_COOLDOWN)
 
 func take_damage(damage: int) -> void:
     Global.player_hp -= damage
@@ -116,13 +129,26 @@ func _on_ShootCooldown_timeout() -> void:
 
 func shoot() -> void:
     var bullet: Bullet = BULLET_SCENE.instance()
+    var power_ratio: float = sqrt(Global.player_power[colour])
     bullet.position = self.position
-    bullet.scale = Vector2.ONE * BULLET_SIZE
+    bullet.scale = Vector2.ONE * (BULLET_SIZE + POWER_BULLET_SIZE * power_ratio)
     bullet.speed = Vector2.RIGHT.rotated(shooting_angle) * BULLET_SPEED
     bullet.colour = colour
     bullet.modulate.a = BULLET_OPACITY
+    bullet.damage = 1 + int(power_ratio * BULLET_DAMAGE_PER_POWER)
     
-#    if colour == Types.RgbColour.GREEN:
-#        bullet.collides_with_other_bullets = true
+    if colour == Types.RgbColour.RED:
+        bullet.homing = true
+        bullet.homing_scale = 1.0 + RED_HOMING_PER_POWER * power_ratio
+    elif colour == Types.RgbColour.GREEN:
+        bullet.collides_with_other_bullets = true
+        bullet.bullet_pierce = int(GREEN_BULLET_ABSORB_PER_POWER * power_ratio)
+    elif colour == Types.RgbColour.BLUE:
+        bullet.entity_pierce = int(BLUE_ENEMY_PIERCE_PER_POWER * power_ratio)
+        bullet.freeze_time = BLUE_FREEZE_PER_POWER * power_ratio
     
+    bullet.connect("hit", self, "_on_bullet_hit")
     BULLET_CONTAINER.add_child(bullet)
+
+func _on_bullet_hit(colour: int, damage: int) -> void:
+    Global.player_power[colour] += damage
