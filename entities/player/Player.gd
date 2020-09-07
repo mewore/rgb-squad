@@ -122,7 +122,7 @@ func shoot() -> void:
     bullet.colour = colour
     bullet.modulate.a = BULLET_OPACITY
     
-    if colour == Types.RgbColour.GREEN:
-        bullet.collides_with_other_bullets = true
+#    if colour == Types.RgbColour.GREEN:
+#        bullet.collides_with_other_bullets = true
     
     BULLET_CONTAINER.add_child(bullet)

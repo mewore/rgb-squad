@@ -163,7 +163,6 @@ FIRST_STATE = NodePath("Moving")
 script = ExtResource( 8 )
 
 [node name="MovingTime" type="Timer" parent="StateMachine/EnteringRoom"]
-wait_time = 2.5
 
 [node name="Waiting" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
@@ -180,7 +179,7 @@ scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 7 )
 vframes = 6
 hframes = 2
-frame = 11
+frame = 10
 
 [node name="Hurtbox" type="Area2D" parent="."]
 monitoring = false

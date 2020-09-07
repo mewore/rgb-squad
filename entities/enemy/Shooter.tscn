@@ -93,7 +93,7 @@ FIRST_STATE = NodePath("Waiting")
 script = ExtResource( 6 )
 
 [node name="WaitingTime" type="Timer" parent="StateMachine/Waiting"]
-wait_time = 3.0
+wait_time = 1.5
 
 [node name="Shooting" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )

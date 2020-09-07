@@ -6,6 +6,8 @@ var target_position: Vector2
 
 onready var MOVING_TIMER: Timer = $MovingTime
 
+const ALLOWED_MOVING_KEYFRAMES: int = 2
+
 func enter() -> void:
     player.is_active = false
     player.moving = true
@@ -18,8 +20,9 @@ func enter() -> void:
         set_next_state(PlayerState.WAITING)
 
 func process(_delta: float) -> void:
-    var ratio = 1.0 - MOVING_TIMER.time_left / MOVING_TIMER.wait_time
-    player.position = start_position.linear_interpolate(target_position, ratio)
+    var ratio: float = 1.0 - MOVING_TIMER.time_left / MOVING_TIMER.wait_time
+    var rounded_ratio: float = round(ratio * ALLOWED_MOVING_KEYFRAMES) / ALLOWED_MOVING_KEYFRAMES 
+    player.position = start_position.linear_interpolate(target_position, rounded_ratio)
 
 func unhandled_input(event: InputEvent) -> void:
     if event.is_action_pressed("set_red"):

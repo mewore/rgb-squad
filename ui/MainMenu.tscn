@@ -6,7 +6,7 @@
 [ext_resource path="res://ui/PreviouslyCleared.gd" type="Script" id=4]
 
 [sub_resource type="Gradient" id=1]
-colors = PoolColorArray( 0.054902, 0.0117647, 0.172549, 1, 0.25098, 0.164706, 0.0431373, 1 )
+colors = PoolColorArray( 0.137255, 0.117647, 0.0980392, 1, 0.235294, 0.196078, 0.254902, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 gradient = SubResource( 1 )
@@ -62,7 +62,7 @@ margin_bottom = 88.0
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.866667, 0.333333, 0.333333, 1 )
-custom_colors/font_color_shadow = Color( 0.929412, 1, 0.0784314, 1 )
+custom_colors/font_color_shadow = Color( 0.176471, 0.517647, 0.65098, 1 )
 text = "R"
 
 [node name="G" type="Label" parent="HBoxContainer/VBoxContainer/Title"]
@@ -72,7 +72,7 @@ margin_bottom = 88.0
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.333333, 0.866667, 0.505882, 1 )
-custom_colors/font_color_shadow = Color( 0.929412, 1, 0.0784314, 1 )
+custom_colors/font_color_shadow = Color( 0.176471, 0.517647, 0.65098, 1 )
 text = "G"
 
 [node name="Bunny" type="Label" parent="HBoxContainer/VBoxContainer/Title"]
@@ -82,7 +82,7 @@ margin_bottom = 88.0
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.333333, 0.517647, 0.866667, 1 )
-custom_colors/font_color_shadow = Color( 0.929412, 1, 0.0784314, 1 )
+custom_colors/font_color_shadow = Color( 0.176471, 0.517647, 0.65098, 1 )
 text = "Bunny"
 
 [node name="Squad" type="Label" parent="HBoxContainer/VBoxContainer/Title"]
@@ -92,7 +92,7 @@ margin_bottom = 88.0
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.509804, 0.517647, 0.533333, 1 )
-custom_colors/font_color_shadow = Color( 0.929412, 1, 0.0784314, 1 )
+custom_colors/font_color_shadow = Color( 0.176471, 0.517647, 0.65098, 1 )
 text = " Squad"
 
 [node name="Spacer2" type="Control" parent="HBoxContainer/VBoxContainer"]

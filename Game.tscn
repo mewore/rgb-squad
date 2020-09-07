@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://ui/RoomDisplay.gd" type="Script" id=2]
 [ext_resource path="res://ui/Minimap.tscn" type="PackedScene" id=3]
@@ -19,10 +19,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.392292, 0.353554 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.353554 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("PauseLabel:visible")
@@ -47,10 +47,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.5, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("PauseLabel:visible")
@@ -63,69 +63,6 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "fade_in"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("GameOverlay:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 0.297302 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "unfreeze"
-} ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "fade_out"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("GameOverlay:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 0.297302 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "freeze"
-}, {
-"args": [  ],
-"method": "leave_room"
-} ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -173,11 +110,6 @@ pause_mode = 1
 ]]
 
 [node name="Border" parent="." instance=ExtResource( 5 )]
-
-[node name="GameOverlay" type="Polygon2D" parent="."]
-modulate = Color( 1, 1, 1, 0.4 )
-color = Color( 0.0627451, 0.054902, 0.0745098, 1 )
-polygon = PoolVector2Array( 0, 0, 1024, 0, 1024, 600, 0, 600 )
 
 [node name="Hud" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -336,6 +268,4 @@ anims/camera_shake = ExtResource( 6 )
 "explicitly_pausable",
 ]]
 pause_mode = 2
-anims/fade_in = SubResource( 5 )
-anims/fade_out = SubResource( 4 )
 anims/player_hurt = SubResource( 1 )
